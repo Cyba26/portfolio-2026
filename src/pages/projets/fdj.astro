@@ -7,24 +7,27 @@ import ProjectThumbnail from '../../components/ProjectThumbnail.astro';
   title="FDJ x Vivatech : Gamifier une expérience pour valoriser l'innovation"
   bgColor="#0b1740"
   textColor="#e7edff"
-  headerImage="/images/projects/FDJ/Mockup_Home.png"
   chips={["UI Design", "UX Design", "Événementiel & Salon", "Jeux d'argent"]}
   pageTitle="FDJ Innomillion Vivatech — Arthur Jeunechamp"
 >
+  <img slot="header" class="parallax-layer" src="/images/projects/FDJ/Background.png" alt="" />
+  <img slot="header" class="parallax-layer" src="/images/projects/FDJ/Mockup FDJ 1.png" alt="" />
+  <img slot="header" class="parallax-layer" src="/images/projects/FDJ/Mockup_Home.png" alt="" />
+
   <p class="project-text">La Française des Jeux affirme sa présence dans l'innovation en participant au salon Vivatech, une vitrine stratégique pour exposer ses avancées technologiques et créer des connexions avec de futurs partenaires potentiels. Pour dynamiser son stand, la FDJ a développé une approche interactive qui reste fidèle à son ADN de récompense immédiate.</p>
 
   <p class="project-text">L'expérience du visiteur s'articule autour de deux concepts de jeu distincts et complémentaires : un jeu à gratter offrant une gratification instantanée, et un challenge qui s'étend sur toute la durée de l'événement : Innomillion. Cette dualité permet d'engager les visiteurs sur différentes temporalités tout en mettant en avant le savoir-faire innovant de l'entreprise.</p>
 
   <div class="project-image">
-    <img src="/images/projects/FDJ/Mockup FDJ 1.png" alt="Mockup FDJ 1" loading="lazy" />
+    <img src="/images/projects/FDJ/1_FDJ-Strategie.png" alt="FDJ Stratégie" loading="lazy" />
   </div>
 
   <div class="project-image">
-    <img src="/images/projects/FDJ/Mockup FDJ 2.png" alt="Mockup FDJ 2" loading="lazy" />
+    <img src="/images/projects/FDJ/2_Mockup FDJ CaptainCause - Innomillions.png" alt="Mockup FDJ CaptainCause Innomillions" loading="lazy" />
   </div>
 
   <div class="project-image">
-    <img src="/images/projects/FDJ/Mockup FDJ 3.png" alt="Mockup FDJ 3" loading="lazy" />
+    <img src="/images/projects/FDJ/3_FDJ-Point_clefs.png" alt="FDJ Points clefs" loading="lazy" />
   </div>
 
   <p class="project-text">L'intervention sur le jeu Innomillion a débuté dès la phase d'idéation, permettant d'affiner le concept initial du client. Une approche UX structurée a été mise en place, débutant par une architecture d'information détaillée pour clarifier le parcours utilisateur.</p>
@@ -32,20 +35,28 @@ import ProjectThumbnail from '../../components/ProjectThumbnail.astro';
   <p class="project-text">Les wireframes ont ensuite permis de visualiser et d'optimiser les interactions clés. Suite à cela, les maquettes graphiques respectant l'identité visuelle de la FDJ ont vu le jour avant d'être transmises aux développeurs.</p>
 
   <div class="project-image">
-    <img src="/images/projects/FDJ/Mockup_Home.png" alt="Mockup Vivatech" loading="lazy" />
+    <img src="/images/projects/FDJ/4_Figma Innomillion parcours.png" alt="Figma Innomillion parcours" loading="lazy" />
+  </div>
+
+  <div class="project-image">
+    <img src="/images/projects/FDJ/5_Figma Innomillion incription.png" alt="Figma Innomillion inscription" loading="lazy" />
+  </div>
+
+  <div class="project-image">
+    <img src="/images/projects/FDJ/6-Salon.png" alt="Salon" loading="lazy" />
   </div>
 
   <p class="project-text">Le travail sur le jeu à gratter a bénéficié d'un processus plus rapide, le concept étant déjà bien abouti. Ainsi, seules des étapes de wireframing et de création de maquettes ont été nécessaires, ce qui a permis de répondre aux contraintes de timing.</p>
 
   <Fragment slot="thumbnails">
     <ProjectThumbnail
-      title="Bouygues Quickconnect"
+      title="QuickConnect Bouygues"
       chips={["UI Design", "UX Design", "Design System", "BTP & Construction"]}
       imageSrc="/images/projects/Bouygues/Thumbnail.png"
       href="/projets/bouygues"
     />
     <ProjectThumbnail
-      title="Thales Parking"
+      title="Parking Thales"
       chips={["UI Design", "UX Design", "Design System", "Écologie", "Parking & Transport"]}
       imageSrc="/images/projects/Thales/Thumbnail.png"
       href="/projets/thales"

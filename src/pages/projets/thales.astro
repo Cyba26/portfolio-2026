@@ -7,28 +7,39 @@ import ProjectThumbnail from '../../components/ProjectThumbnail.astro';
   title="Thales Parking : Réinventer le parcours utilisateur dans son expérience du parking"
   bgColor="#00111d"
   textColor="#f1f5ff"
-  headerImage="/images/projects/Thales/Mockup_Home.png"
   chips={["UI Design", "UX Design", "Design System", "Écologie", "Parking & Transport"]}
   pageTitle="Thales Parking — Arthur Jeunechamp"
 >
+  <img slot="header" class="parallax-layer" src="/images/projects/Thales/Background.png" alt="" />
+  <img slot="header" class="parallax-layer" src="/images/projects/Thales/Mockup Thales Ecotick 1.png" alt="" />
+  <img slot="header" class="parallax-layer" src="/images/projects/Thales/Mockup_Home.png" alt="" />
+
   <p class="project-text">La section Parking chez Thales réinvente astucieusement ses infrastructures et son approche sur le parking de demain. L'idée à travers la première solution à émerger : Ecotick, est de se défaire des tickets papiers pour tenter une approche numérique et plus userfriendly, tout en limitant l'impact environnemental.</p>
 
   <div class="project-image">
-    <img src="/images/projects/Thales/Mockup Thales Ecotick 1.png" alt="Mockup Thales Ecotick 1" loading="lazy" />
+    <img src="/images/projects/Thales/1_Thales-Pains.png" alt="Thales Pains" loading="lazy" />
+  </div>
+
+  <div class="project-image">
+    <img src="/images/projects/Thales/2_Thales-User_journey_simplifie.png" alt="User journey simplifié" loading="lazy" />
+  </div>
+
+  <p class="project-text">C'est en partant de ce contexte qu'est née cette application mobile et tablette. En s'inspirant des éléments composant les bornes (boutons physiques, finitions de haute manufacture, etc.), l'interface du produit numérique est à la fois limpide grâce à sa concordance aux objets physiques présent dans le parking, mais également efficace de part sa simplicité visuelle accrue.</p>
+
+  <div class="project-image">
+    <img src="/images/projects/Thales/3_Keyvisual_Ecotick.png" alt="Key visual Ecotick" loading="lazy" />
   </div>
 
   <div class="project-image">
     <img src="/images/projects/Thales/Mockup Thales Ecotick 2.png" alt="Mockup Thales Ecotick 2" loading="lazy" />
   </div>
 
-  <p class="project-text">C'est en partant de ce contexte qu'est née cette application mobile et tablette. En s'inspirant des éléments composant les bornes (boutons physiques, finitions de haute manufacture, etc.), l'interface du produit numérique est à la fois limpide grâce à sa concordance aux objets physiques présent dans le parking, mais également efficace de part sa simplicité visuelle accrue.</p>
-
   <div class="project-image">
-    <img src="/images/projects/Thales/Mockup Thales Ecotick 3.png" alt="Mockup Thales Ecotick 3" loading="lazy" />
+    <img src="/images/projects/Thales/5_Fonctionnement.png" alt="Fonctionnement" loading="lazy" />
   </div>
 
   <div class="project-image">
-    <img src="/images/projects/Thales/9_Presentation_split_screens_Carre.png" alt="Présentation split screens" loading="lazy" />
+    <img src="/images/projects/Thales/6_Thales-Gains.png" alt="Thales Gains" loading="lazy" />
   </div>
 
   <p class="project-text">Afin de centraliser l'ensemble de l'infrastructure, aussi bien pour le propriétaire du parking que pour les équipes d'installation et de maintenance de Thales, un outil unifié a été conçu et développé. L'objectif principal était de simplifier les processus internes en créant une interface globale capable de répondre aux besoins de chaque profil utilisateur.</p>
@@ -37,22 +48,38 @@ import ProjectThumbnail from '../../components/ProjectThumbnail.astro';
 
   <p class="project-text">En organisant des ateliers d'idéation avec les parties prenantes, nous avons identifié les besoins des différents responsables. Ces échanges nous ont permis de construire une arborescence simple et cohérente, puis de développer des wireframes et des maquettes répondant aux attentes métiers tout en assurant une expérience fluide et intuitive.</p>
 
+  <div class="project-image">
+    <img src="/images/projects/Thales/7_Wireframe.png" alt="Wireframe" loading="lazy" />
+  </div>
+
+  <div class="project-image">
+    <img src="/images/projects/Thales/8_Maquette.png" alt="Maquette" loading="lazy" />
+  </div>
+
   <p class="project-text">Par la suite, des supports supplémentaires ont commencé à voir le jour : d'autres applications, des écrans de bornes, des présentations internes, etc.</p>
+
+  <div class="project-image">
+    <img src="/images/projects/Thales/9_Presentation_split_screens_Carre.png" alt="Présentation split screens" loading="lazy" />
+  </div>
 
   <p class="project-text">L'idée de cette nouvelle interface est de lancer un univers graphique pour les futurs produits Thales Parking en interne ou en externe. Cette application sert de tremplin à cette nouvelle déclinaison graphique et ergonomique.</p>
 
+  <div class="project-image">
+    <img src="/images/projects/Thales/10_Echantillon Design System Thales1.png" alt="Échantillon Design System Thales" loading="lazy" />
+  </div>
+
   <Fragment slot="thumbnails">
     <ProjectThumbnail
-      title="Bouygues Quickconnect"
-      chips={["UI Design", "UX Design", "Design System", "BTP & Construction"]}
-      imageSrc="/images/projects/Bouygues/Thumbnail.png"
-      href="/projets/bouygues"
-    />
-    <ProjectThumbnail
-      title="Colas Management Assist'"
+      title="Management Assist' Colas"
       chips={["UI Design", "UX Design", "Charte Graphique", "BTP & Construction"]}
       imageSrc="/images/projects/Colas/Thumbnail.png"
       href="/projets/colas"
+    />
+    <ProjectThumbnail
+      title="Innomillion Vivatech FDJ"
+      chips={["UI Design", "UX Design", "Événementiel & Salon", "Jeux d'argent"]}
+      imageSrc="/images/projects/FDJ/Thumbnail.png"
+      href="/projets/fdj"
     />
   </Fragment>
 </ProjectLayout>

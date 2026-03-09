@@ -7,7 +7,6 @@ interface Props {
   title: string;
   bgColor: string;
   textColor: string;
-  headerImage: string;
   chips: string[];
   pageTitle?: string;
 }
@@ -16,7 +15,6 @@ const {
   title,
   bgColor,
   textColor,
-  headerImage,
   chips,
   pageTitle,
 } = Astro.props;
@@ -30,7 +28,7 @@ const {
       <div class="project-container__inner">
         <!-- Header visual -->
         <div class="project-header">
-          <img src={headerImage} alt={title} />
+          <slot name="header" />
         </div>
 
         <!-- Title -->
@@ -74,15 +72,10 @@ const {
   }
 
   .project-header {
-    width: 100%;
-    aspect-ratio: 1 / 1;
+    position: relative;
     overflow: hidden;
-  }
-
-  .project-header img {
+    aspect-ratio: 1 / 1;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
   }
 
   .project-title {
@@ -134,4 +127,50 @@ const {
     height: 100%;
     object-fit: cover;
   }
+
+  .project-image video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .parallax-layer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 </style>
+
+<script>
+  function initParallax() {
+    const header = document.querySelector('.project-header');
+    if (!header) return;
+
+    const layers = header.querySelectorAll('.parallax-layer');
+    if (!layers.length) return;
+
+    function onScroll() {
+      const rect = header!.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      // Only apply when header is in viewport
+      if (rect.bottom < 0 || rect.top > windowHeight) return;
+
+      const scrollY = window.scrollY;
+
+      layers.forEach((layer, index) => {
+        const speed = index * 0.08;
+        const yOffset = scrollY * speed;
+        (layer as HTMLElement).style.transform = `translateY(${yOffset}px)`;
+      });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  document.addEventListener('DOMContentLoaded', initParallax);
+  document.addEventListener('astro:page-load', initParallax);
+</script>

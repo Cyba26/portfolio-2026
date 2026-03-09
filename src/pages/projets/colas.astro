@@ -7,26 +7,29 @@ import ProjectThumbnail from '../../components/ProjectThumbnail.astro';
   title="Colas Management Assist' : gamifier un outil de remontée terrain sur les chantiers"
   bgColor="#dfd8c0"
   textColor="#333"
-  headerImage="/images/projects/Colas/Mockup_Home.png"
   chips={["UI Design", "UX Design", "Charte Graphique", "BTP & Construction"]}
   pageTitle="Colas Management Assist' — Arthur Jeunechamp"
 >
+  <img slot="header" class="parallax-layer" src="/images/projects/Colas/Mockup Colas@5-1470x919_Fond_cut.png" alt="" />
+  <img slot="header" class="parallax-layer" src="/images/projects/Colas/Mockup Colas@2-1470x919_PhoneOnly.png" alt="" />
+  <img slot="header" class="parallax-layer" src="/images/projects/Colas/Mockup Colas@5-1470x919_Logo.png" alt="" />
+
   <p class="project-text">Leader mondial des infrastructures de transport, Colas déploie son excellence à l'international en repoussant constamment les frontières de l'innovation. Dans cette optique, sa filiale Colas Alaska a développé une solution mobile avant-gardiste, transformant la gestion opérationnelle des chantiers grâce à une approche novatrice de gamification.</p>
 
   <div class="project-image">
-    <img src="/images/projects/Colas/Mockup Colas@2-1470x919_PhoneOnly.png" alt="Mockup Colas 1" loading="lazy" />
+    <img src="/images/projects/Colas/1_Colas-Pains.png" alt="Colas Pains" loading="lazy" />
   </div>
 
   <p class="project-text">Cette application de nouvelle génération révolutionne le quotidien des équipes terrain en leur offrant une interface intuitive et engageante. Les collaborateurs peuvent désormais suivre leurs missions en temps réel, visualiser leurs performances quotidiennes et participer à une expérience collaborative.</p>
 
   <div class="project-image">
-    <img src="/images/projects/Colas/3_Mockup ecran.png" alt="Mockup Colas écran" loading="lazy" />
+    <img src="/images/projects/Colas/2_Colas-Point_clefs.png" alt="Colas Points clefs" loading="lazy" />
   </div>
 
   <p class="project-text">La dimension ludique renforce la cohésion d'équipe tout en optimisant la productivité, permettant à chaque opérateur de mesurer concrètement sa contribution à la réussite collective.</p>
 
   <div class="project-image">
-    <img src="/images/projects/Colas/Mockup Colas@5-1470x919_Fond_cut.png" alt="Mockup Colas 3" loading="lazy" />
+    <img src="/images/projects/Colas/3_Mockup ecran.png" alt="Mockup écran" loading="lazy" />
   </div>
 
   <p class="project-text">Une bibliothèque complète de composants modulaires a été développée, garantissant ainsi la robustesse de la solution. Cette architecture innovante constitue un socle technologique pérenne, permettant d'optimiser les développements futurs.</p>
@@ -37,18 +40,22 @@ import ProjectThumbnail from '../../components/ProjectThumbnail.astro';
 
   <p class="project-text">À travers un document clair et exhaustif, les collaborateurs découvrent l'étendue des fonctionnalités disponibles, facilitant ainsi leur appropriation de l'outil et leur efficacité opérationnelle. Cette démarche d'accompagnement personnalisé témoigne de l'engagement à garantir une adoption optimale de la solution par l'ensemble des équipes.</p>
 
+  <div class="project-image">
+    <img src="/images/projects/Colas/5_Mockup_Colas_Flyer_Presentation-produit_1.jpg" alt="Mockup Colas Flyer Présentation produit" loading="lazy" />
+  </div>
+
   <Fragment slot="thumbnails">
     <ProjectThumbnail
-      title="FDJ Innomillion Vivatech"
-      chips={["UI Design", "UX Design", "Événementiel & Salon", "Jeux d'argent"]}
-      imageSrc="/images/projects/FDJ/Thumbnail.png"
-      href="/projets/fdj"
-    />
-    <ProjectThumbnail
-      title="Thales Parking"
+      title="Parking Thales"
       chips={["UI Design", "UX Design", "Design System", "Écologie", "Parking & Transport"]}
       imageSrc="/images/projects/Thales/Thumbnail.png"
       href="/projets/thales"
+    />
+    <ProjectThumbnail
+      title="Innomillion Vivatech FDJ"
+      chips={["UI Design", "UX Design", "Événementiel & Salon", "Jeux d'argent"]}
+      imageSrc="/images/projects/FDJ/Thumbnail.png"
+      href="/projets/fdj"
     />
   </Fragment>
 </ProjectLayout>

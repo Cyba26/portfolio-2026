@@ -7,18 +7,21 @@ import ProjectThumbnail from '../../components/ProjectThumbnail.astro';
   title="Bouygues Quickconnect : Réinventer la gestion de l'information sur les chantiers"
   bgColor="#faf5eb"
   textColor="#464b47"
-  headerImage="/images/projects/Bouygues/Mockup_Home.png"
   chips={["UI Design", "UX Design", "Design System", "BTP & Construction"]}
   pageTitle="Bouygues Quickconnect — Arthur Jeunechamp"
 >
+  <img slot="header" class="parallax-layer" src="/images/projects/Bouygues/Mockup QuickConnect 1.png" alt="" />
+  <img slot="header" class="parallax-layer" src="/images/projects/Bouygues/Mockup QuickConnect 2.png" alt="" />
+  <img slot="header" class="parallax-layer" src="/images/projects/Bouygues/Mockup QuickConnect 3.png" alt="" />
+
   <p class="project-text">Présent dans plus de 80 pays, Bouygues est un acteur majeur du BTP, moteur de nombreux projets d'innovation. Parmi eux, Quickconnect, un outil numérique conçu pour transformer la gestion de l'information sur les chantiers. Son objectif : faciliter la transmission d'informations entre les équipes terrain et les équipes siège, à travers un système de formulaires intelligents.</p>
 
   <div class="project-image">
-    <img src="/images/projects/Bouygues/Mockup_Home.png" alt="Mockup QuickConnect Home" loading="lazy" />
+    <img src="/images/projects/Bouygues/1_Quickconnect-Pains.png" alt="Quickconnect Pains" loading="lazy" />
   </div>
 
   <div class="project-image">
-    <img src="/images/projects/Bouygues/Mockup QuickConnect 1.png" alt="Mockup QuickConnect 1" loading="lazy" />
+    <img src="/images/projects/Bouygues/2_Quickconnect-Formulaires.png" alt="Quickconnect Formulaires" loading="lazy" />
   </div>
 
   <p class="project-text">Pensée comme une solution multi-supports, l'application se décline en deux versions distinctes : une application desktop pour la gestion administrative et une application mobile adaptée aux contraintes du terrain.</p>
@@ -28,31 +31,47 @@ import ProjectThumbnail from '../../components/ProjectThumbnail.astro';
   <p class="project-text">Le projet a débuté par un travail d'arborescence approfondi afin de cadrer les besoins spécifiques des différents profils utilisateurs. Cette phase a été suivie par la création d'un plan complet de wireframes, servant de base à la conception d'écrans.</p>
 
   <div class="project-image">
-    <img src="/images/projects/Bouygues/Mockup QuickConnect 2.png" alt="Mockup QuickConnect 2" loading="lazy" />
+    <img src="/images/projects/Bouygues/3_Arbo.png" alt="Arborescence" loading="lazy" />
   </div>
 
   <p class="project-text">Le projet a débuté par un travail d'arborescence approfondi afin de cadrer les besoins spécifiques des différents profils utilisateurs. Cette phase a été suivie par la création d'un plan complet de wireframes, servant de base à la conception d'écrans.</p>
 
   <div class="project-image">
-    <img src="/images/projects/Bouygues/Mockup QuickConnect 3.png" alt="Mockup QuickConnect 3" loading="lazy" />
+    <img src="/images/projects/Bouygues/4_Wireframe to maquette.png" alt="Wireframe to maquette" loading="lazy" />
   </div>
 
   <p class="project-text">Une fois la structure validée, les écrans ont été créés avec une attention particulière. L'interface a été pensée pour refléter les réalités du terrain tout en conservant une identité visuelle unique.</p>
 
   <p class="project-text">Par ailleurs, un design system a été développé pour assurer la cohérence graphique, mais aussi pour faciliter la maintenance de l'outil dans le temps.</p>
 
+  <div class="project-image">
+    <img src="/images/projects/Bouygues/5_Maquette.png" alt="Maquette" loading="lazy" />
+  </div>
+
+  <div class="project-image">
+    <img src="/images/projects/Bouygues/6_Web to mobile.png" alt="Web to mobile" loading="lazy" />
+  </div>
+
+  <div class="project-image">
+    <video src="/images/projects/Bouygues/7_Showreel_Client_Quickconnect-8s.mp4" autoplay muted loop playsinline></video>
+  </div>
+
+  <div class="project-image">
+    <img src="/images/projects/Bouygues/8_Quickconnect-Gains.png" alt="Quickconnect Gains" loading="lazy" />
+  </div>
+
   <Fragment slot="thumbnails">
     <ProjectThumbnail
-      title="FDJ Innomillion Vivatech"
+      title="Management Assist' Colas"
+      chips={["UI Design", "UX Design", "Charte Graphique", "BTP & Construction"]}
+      imageSrc="/images/projects/Colas/Thumbnail.png"
+      href="/projets/colas"
+    />
+    <ProjectThumbnail
+      title="Innomillion Vivatech FDJ"
       chips={["UI Design", "UX Design", "Événementiel & Salon", "Jeux d'argent"]}
       imageSrc="/images/projects/FDJ/Thumbnail.png"
       href="/projets/fdj"
-    />
-    <ProjectThumbnail
-      title="Thales Parking"
-      chips={["UI Design", "UX Design", "Design System", "Écologie", "Parking & Transport"]}
-      imageSrc="/images/projects/Thales/Thumbnail.png"
-      href="/projets/thales"
     />
   </Fragment>
 </ProjectLayout>

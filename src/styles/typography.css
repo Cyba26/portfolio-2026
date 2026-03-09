@@ -1,0 +1,48 @@
+/* ── Typography System ── */
+
+.h1 {
+  font-size: var(--font-size-h1);
+  letter-spacing: var(--letter-spacing-h1);
+  line-height: 1;
+}
+
+.h1-light {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-light);
+  letter-spacing: var(--letter-spacing-h1);
+  line-height: 1;
+}
+
+.h1-bold {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-h1);
+  text-shadow: var(--glow-title);
+  line-height: 1;
+}
+
+.h2-bold {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-h2);
+  line-height: 1;
+}
+
+.h3-bold {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-h3);
+  line-height: 1;
+}
+
+.text-md {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.4;
+}
+
+.text-md-bold {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.4;
+}

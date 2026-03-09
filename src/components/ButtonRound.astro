@@ -1,0 +1,32 @@
+---
+interface Props {
+  href?: string;
+  ariaLabel?: string;
+}
+
+const { href = '#', ariaLabel = 'Voir le projet' } = Astro.props;
+---
+
+<a class="button-round" href={href} aria-label={ariaLabel}>
+  <svg width="12" height="16" viewBox="0 0 12 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 2L10 8L2 14" stroke="#031334" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</a>
+
+<style>
+  .button-round {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    background-color: var(--color-grey);
+    border-radius: var(--radius-md);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .button-round:hover {
+    background-color: var(--color-cream);
+    transform: scale(1.05);
+  }
+</style>

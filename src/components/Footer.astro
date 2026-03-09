@@ -1,0 +1,33 @@
+---
+interface Props {
+  patternSrc?: string;
+}
+
+const { patternSrc } = Astro.props;
+---
+
+<footer class="footer">
+  {patternSrc && (
+    <img class="footer__pattern" src={patternSrc} alt="" />
+  )}
+</footer>
+
+<style>
+  .footer {
+    width: 100%;
+    height: 245px;
+    background-color: var(--color-blue-800);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .footer__pattern {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.33;
+    pointer-events: none;
+  }
+</style>

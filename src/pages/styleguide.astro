@@ -1,0 +1,209 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import Chip from '../components/Chip.astro';
+import ButtonRound from '../components/ButtonRound.astro';
+import PhotoTitle from '../components/PhotoTitle.astro';
+import BlocSkills from '../components/BlocSkills.astro';
+import BlocLink from '../components/BlocLink.astro';
+---
+
+<Layout title="Styleguide — Design System">
+  <main class="styleguide">
+
+    <!-- Colors -->
+    <section class="sg-section">
+      <h2 class="h1-bold">Couleurs</h2>
+      <div class="sg-colors">
+        <div class="sg-color" style="background: var(--color-cream);">
+          <span style="color: #031334;">Cream<br/>#FEF7E1</span>
+        </div>
+        <div class="sg-color" style="background: var(--color-blue-400);">
+          <span>Blue 400<br/>#4381C3</span>
+        </div>
+        <div class="sg-color" style="background: var(--color-blue-800); border: 1px solid var(--color-blue-400);">
+          <span>Blue 800<br/>#031334</span>
+        </div>
+        <div class="sg-color" style="background: var(--color-blue-850); border: 1px solid var(--color-blue-400);">
+          <span>Blue 850<br/>#001128</span>
+        </div>
+        <div class="sg-color" style="background: var(--color-grey);">
+          <span style="color: #031334;">Grey<br/>#D9D9D9</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Typography -->
+    <section class="sg-section">
+      <h2 class="h1-bold">Typographie — SUSE</h2>
+      <div class="sg-typo-list">
+        <p class="h1-light">H1 Light — Je suis</p>
+        <p class="h1-bold">H1 Bold — Curieux et créatif</p>
+        <p class="h2-bold">H2 Bold — Je crée des illus</p>
+        <p class="h3-bold">H3 Bold — Ce n'est qu'un aperçu !</p>
+        <p class="text-md">Text MD — Ayant plus de 5 ans d'expérience en agence...</p>
+        <p class="text-md-bold">Text MD Bold — UI Design</p>
+      </div>
+    </section>
+
+    <!-- Spacing -->
+    <section class="sg-section">
+      <h2 class="h1-bold">Espacements</h2>
+      <div class="sg-spacings">
+        <div class="sg-spacing-item"><div class="sg-spacing-box" style="width: var(--space-8); height: var(--space-8);"></div><span class="text-md">8px</span></div>
+        <div class="sg-spacing-item"><div class="sg-spacing-box" style="width: var(--space-16); height: var(--space-16);"></div><span class="text-md">16px</span></div>
+        <div class="sg-spacing-item"><div class="sg-spacing-box" style="width: var(--space-24); height: var(--space-24);"></div><span class="text-md">24px</span></div>
+        <div class="sg-spacing-item"><div class="sg-spacing-box" style="width: var(--space-32); height: var(--space-32);"></div><span class="text-md">32px</span></div>
+        <div class="sg-spacing-item"><div class="sg-spacing-box" style="width: var(--space-48); height: var(--space-48);"></div><span class="text-md">48px</span></div>
+        <div class="sg-spacing-item"><div class="sg-spacing-box" style="width: var(--space-64); height: var(--space-64);"></div><span class="text-md">64px</span></div>
+      </div>
+    </section>
+
+    <!-- Components -->
+    <section class="sg-section">
+      <h2 class="h1-bold">Composants</h2>
+
+      <!-- Chip -->
+      <div class="sg-component">
+        <h3 class="h2-bold">Chip</h3>
+        <div class="sg-component__preview">
+          <Chip label="UI Design" />
+          <Chip label="UX Design" />
+          <Chip label="Design System" />
+          <Chip label="BTP & Construction" />
+        </div>
+      </div>
+
+      <!-- Button Round -->
+      <div class="sg-component">
+        <h3 class="h2-bold">Button Round</h3>
+        <div class="sg-component__preview">
+          <ButtonRound />
+        </div>
+      </div>
+
+      <!-- Section Title -->
+      <div class="sg-component">
+        <h3 class="h2-bold">Section Title</h3>
+        <SectionTitle title="Mes projets" />
+      </div>
+
+      <!-- Photo + Title -->
+      <div class="sg-component">
+        <h3 class="h2-bold">Photo + Title</h3>
+        <div class="sg-component__preview">
+          <PhotoTitle
+            photoSrc="/images/placeholder.jpg"
+            lineLight="Je suis"
+            lineBold="Curieux et créatif"
+          />
+        </div>
+      </div>
+
+      <!-- Bloc Skills -->
+      <div class="sg-component">
+        <h3 class="h2-bold">Bloc Skills</h3>
+        <div class="sg-component__preview" style="max-width: 400px;">
+          <BlocSkills
+            title="Je crée des illus"
+            description="Dessiner sans dépasser des lignes la plupart du temps"
+            imageSrc="/images/placeholder.jpg"
+          />
+        </div>
+      </div>
+
+      <!-- Bloc Link -->
+      <div class="sg-component">
+        <h3 class="h2-bold">Bloc Link</h3>
+        <div class="sg-component__preview">
+          <BlocLink label="Arthur Jeunechamp" iconSrc="/images/placeholder.jpg" />
+          <BlocLink label="arthur.jeunechamp@gmail.com" iconSrc="/images/placeholder.jpg" />
+        </div>
+      </div>
+    </section>
+
+  </main>
+</Layout>
+
+<style>
+  .styleguide {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--space-64);
+  }
+
+  .sg-section {
+    margin-bottom: var(--space-128);
+  }
+
+  .sg-section > .h1-bold {
+    margin-bottom: var(--space-48);
+    padding-bottom: var(--space-16);
+    border-bottom: 1px solid var(--color-blue-400);
+  }
+
+  .sg-colors {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-16);
+  }
+
+  .sg-color {
+    width: 160px;
+    height: 120px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: end;
+    padding: var(--space-16);
+  }
+
+  .sg-color span {
+    font-size: 14px;
+    font-weight: var(--font-weight-bold);
+    line-height: 1.4;
+  }
+
+  .sg-typo-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-32);
+  }
+
+  .sg-spacings {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    gap: var(--space-32);
+  }
+
+  .sg-spacing-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-8);
+  }
+
+  .sg-spacing-box {
+    background-color: var(--color-blue-400);
+    border-radius: 4px;
+  }
+
+  .sg-component {
+    margin-bottom: var(--space-64);
+  }
+
+  .sg-component > .h2-bold {
+    margin-bottom: var(--space-24);
+    color: var(--color-blue-400);
+  }
+
+  .sg-component__preview {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-16);
+    padding: var(--space-32);
+    background-color: var(--color-blue-850);
+    border-radius: var(--radius-sm);
+  }
+</style>

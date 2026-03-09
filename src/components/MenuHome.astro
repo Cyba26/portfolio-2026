@@ -1,0 +1,48 @@
+---
+interface MenuItem {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  items?: MenuItem[];
+}
+
+const { items = [
+  { label: 'Projets', href: '#projets' },
+  { label: 'Skills', href: '#skills' },
+  { label: 'Contact', href: '#contact' },
+] } = Astro.props;
+---
+
+<nav class="menu-home">
+  {items.map((item) => (
+    <a class="menu-home__link text-md" href={item.href}>{item.label}</a>
+  ))}
+</nav>
+
+<style>
+  .menu-home {
+    position: fixed;
+    top: 50%;
+    left: var(--space-32);
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    z-index: 100;
+  }
+
+  .menu-home__link {
+    color: var(--color-cream);
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+  }
+
+  .menu-home__link:hover {
+    opacity: 1;
+  }
+</style>

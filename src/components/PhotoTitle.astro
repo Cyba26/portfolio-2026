@@ -1,0 +1,42 @@
+---
+interface Props {
+  photoSrc: string;
+  lineLight: string;
+  lineBold: string;
+}
+
+const { photoSrc, lineLight, lineBold } = Astro.props;
+---
+
+<div class="photo-title">
+  <img class="photo-title__avatar" src={photoSrc} alt="Arthur Jeunechamp" />
+  <div class="photo-title__text">
+    <span class="h1-light">{lineLight}</span>
+    <span class="h1-bold">{lineBold}</span>
+  </div>
+</div>
+
+<style>
+  .photo-title {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-24);
+    min-width: 300px;
+  }
+
+  .photo-title__avatar {
+    width: 128px;
+    height: 128px;
+    border-radius: var(--radius-full);
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .photo-title__text {
+    display: flex;
+    flex-direction: column;
+    min-width: 280px;
+  }
+</style>

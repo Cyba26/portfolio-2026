@@ -1,0 +1,39 @@
+---
+interface Props {
+  label: string;
+  href?: string;
+  iconSrc: string;
+}
+
+const { label, href = '#', iconSrc } = Astro.props;
+---
+
+<a class="bloc-link" href={href} target="_blank" rel="noopener noreferrer">
+  <img class="bloc-link__icon" src={iconSrc} alt="" width="56" height="56" />
+  <span class="text-md bloc-link__label">{label}</span>
+</a>
+
+<style>
+  .bloc-link {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    transition: opacity 0.2s ease;
+  }
+
+  .bloc-link:hover {
+    opacity: 0.8;
+  }
+
+  .bloc-link__icon {
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .bloc-link__label {
+    color: var(--color-blue-400);
+    white-space: nowrap;
+  }
+</style>

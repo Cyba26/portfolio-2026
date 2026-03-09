@@ -1,0 +1,116 @@
+---
+import Chip from './Chip.astro';
+import ButtonRound from './ButtonRound.astro';
+
+interface Props {
+  clientLight: string;
+  clientBold: string;
+  description: string;
+  chips: string[];
+  imageSrc: string;
+  backgroundSrc: string;
+  href?: string;
+}
+
+const { clientLight, clientBold, description, chips, imageSrc, backgroundSrc, href } = Astro.props;
+---
+
+<section class="bloc-project">
+  <div class="bloc-project__bg">
+    <img src={backgroundSrc} alt="" loading="lazy" />
+    <div class="bloc-project__overlay"></div>
+  </div>
+
+  <div class="bloc-project__content">
+    <div class="bloc-project__image">
+      <img src={imageSrc} alt={`${clientLight} ${clientBold}`} loading="lazy" />
+    </div>
+
+    <div class="bloc-project__info">
+      <div class="bloc-project__title">
+        <span class="h1-light">{clientLight}</span>
+        <span class="h1-bold">{clientBold}</span>
+      </div>
+
+      <p class="text-md bloc-project__desc">{description}</p>
+
+      <div class="bloc-project__chips">
+        {chips.map((chip) => <Chip label={chip} />)}
+      </div>
+
+      <ButtonRound href={href} ariaLabel={`Voir le projet ${clientBold}`} />
+    </div>
+  </div>
+</section>
+
+<style>
+  .bloc-project {
+    position: relative;
+    width: 100%;
+    padding: var(--space-48) var(--space-64);
+  }
+
+  .bloc-project__bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .bloc-project__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .bloc-project__overlay {
+    position: absolute;
+    inset: 0;
+    background: var(--color-overlay);
+  }
+
+  .bloc-project__content {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-16);
+  }
+
+  .bloc-project__image {
+    flex-shrink: 0;
+    width: 600px;
+    min-width: 300px;
+  }
+
+  .bloc-project__image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .bloc-project__info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+    min-width: 300px;
+    max-width: 600px;
+  }
+
+  .bloc-project__title {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .bloc-project__desc {
+    color: var(--color-cream);
+  }
+
+  .bloc-project__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-16);
+  }
+</style>

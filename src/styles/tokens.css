@@ -1,0 +1,51 @@
+/* ============================================
+   DESIGN SYSTEM TOKENS — Portfolio Arthur Jeunechamp
+   Extracted from Figma: Site Perso - 2026
+   ============================================ */
+
+:root {
+  /* ── Colors ── */
+  --color-cream:       #FEF7E1;
+  --color-blue-400:    #4381C3;
+  --color-blue-800:    #031334;
+  --color-blue-850:    #001128;
+  --color-overlay:     rgba(0, 17, 40, 0.6);
+  --color-grey:        #D9D9D9;
+
+  /* ── Typography ── */
+  --font-family:       'SUSE', sans-serif;
+
+  --font-size-h1:      48px;
+  --font-size-h2:      36px;
+  --font-size-h3:      24px;
+  --font-size-body:    20px;
+
+  --font-weight-light:   300;
+  --font-weight-regular: 400;
+  --font-weight-bold:    700;
+
+  --letter-spacing-h1:  -0.96px;
+  --letter-spacing-h2:  -0.36px;
+  --letter-spacing-h3:  -0.24px;
+
+  /* ── Effects ── */
+  --glow-title: 0 0 41.2px rgba(254, 247, 225, 0.5);
+
+  /* ── Spacing ── */
+  --space-8:   8px;
+  --space-16:  16px;
+  --space-24:  24px;
+  --space-32:  32px;
+  --space-48:  48px;
+  --space-64:  64px;
+  --space-128: 128px;
+
+  /* ── Radius ── */
+  --radius-sm:   16px;
+  --radius-md:   32px;
+  --radius-full: 999px;
+
+  /* ── Layout ── */
+  --max-width:   1440px;
+  --content-padding: var(--space-128);
+}

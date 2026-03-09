@@ -1,0 +1,137 @@
+---
+import Layout from './Layout.astro';
+import MenuHome from '../components/MenuHome.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  bgColor: string;
+  textColor: string;
+  headerImage: string;
+  chips: string[];
+  pageTitle?: string;
+}
+
+const {
+  title,
+  bgColor,
+  textColor,
+  headerImage,
+  chips,
+  pageTitle,
+} = Astro.props;
+---
+
+<Layout title={pageTitle || title}>
+  <MenuHome />
+
+  <main>
+    <div class="project-container" style={`--project-bg: ${bgColor}; --project-text: ${textColor};`}>
+      <div class="project-container__inner">
+        <!-- Header visual -->
+        <div class="project-header">
+          <img src={headerImage} alt={title} />
+        </div>
+
+        <!-- Title -->
+        <h2 class="h2-bold project-title">{title}</h2>
+
+        <!-- Chips -->
+        <div class="project-chips">
+          {chips.map((chip) => <span class="project-chip">{chip}</span>)}
+        </div>
+
+        <!-- Content slot -->
+        <slot />
+      </div>
+    </div>
+
+    <!-- Other projects thumbnails -->
+    <section class="project-others">
+      <slot name="thumbnails" />
+    </section>
+
+    <!-- Footer -->
+    <Footer patternSrc="/images/footer/Motif UI UX pour boucle.png" />
+  </main>
+</Layout>
+
+<style>
+  .project-container {
+    background-color: var(--project-bg);
+    color: var(--project-text);
+    margin: 0 var(--space-24);
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+  }
+
+  .project-container__inner {
+    max-width: 682px;
+    margin: 0 auto;
+    padding: 0 var(--space-24) var(--space-128);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-32);
+  }
+
+  .project-header {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+  }
+
+  .project-header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .project-title {
+    color: var(--project-text);
+  }
+
+  .project-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-8);
+  }
+
+  .project-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 12px;
+    background-color: var(--color-blue-500);
+    color: var(--color-cream);
+    border-radius: var(--radius-full);
+    font-size: 16px;
+    font-weight: var(--font-weight-regular);
+    white-space: nowrap;
+  }
+
+  .project-others {
+    display: flex;
+    gap: var(--space-32);
+    padding: var(--space-64) var(--space-24);
+  }
+</style>
+
+<style is:global>
+  .project-text {
+    font-size: 16px;
+    font-weight: var(--font-weight-regular);
+    line-height: 1.6;
+  }
+
+  .project-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: var(--space-24);
+    overflow: hidden;
+  }
+
+  .project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>

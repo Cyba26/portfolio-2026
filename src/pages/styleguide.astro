@@ -6,9 +6,11 @@ import ButtonRound from '../components/ButtonRound.astro';
 import PhotoTitle from '../components/PhotoTitle.astro';
 import BlocSkills from '../components/BlocSkills.astro';
 import BlocLink from '../components/BlocLink.astro';
+import MenuHome from '../components/MenuHome.astro';
 ---
 
 <Layout title="Styleguide — Design System">
+  <MenuHome />
   <main class="styleguide">
 
     <!-- Colors -->
@@ -93,7 +95,7 @@ import BlocLink from '../components/BlocLink.astro';
         <h3 class="h2-bold">Photo + Title</h3>
         <div class="sg-component__preview">
           <PhotoTitle
-            photoSrc="/images/placeholder.jpg"
+            photoSrc="/images/photo.jpg"
             lineLight="Je suis"
             lineBold="Curieux et créatif"
           />
@@ -107,7 +109,7 @@ import BlocLink from '../components/BlocLink.astro';
           <BlocSkills
             title="Je crée des illus"
             description="Dessiner sans dépasser des lignes la plupart du temps"
-            imageSrc="/images/placeholder.jpg"
+            imageSrc="/images/skills/Capture d'écran 2024-10-04 à 22.56.29.png"
           />
         </div>
       </div>
@@ -116,8 +118,8 @@ import BlocLink from '../components/BlocLink.astro';
       <div class="sg-component">
         <h3 class="h2-bold">Bloc Link</h3>
         <div class="sg-component__preview">
-          <BlocLink label="Arthur Jeunechamp" iconSrc="/images/placeholder.jpg" />
-          <BlocLink label="arthur.jeunechamp@gmail.com" iconSrc="/images/placeholder.jpg" />
+          <BlocLink label="Arthur Jeunechamp" iconSrc="/images/icons/Icon - LK.png" />
+          <BlocLink label="arthur.jeunechamp@gmail.com" iconSrc="/images/icons/Icon - Mail.png" />
         </div>
       </div>
     </section>

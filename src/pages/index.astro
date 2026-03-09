@@ -1,11 +1,221 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import MenuHome from '../components/MenuHome.astro';
+import PhotoTitle from '../components/PhotoTitle.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import BlocProject from '../components/BlocProject.astro';
+import BlocSkills from '../components/BlocSkills.astro';
+import BlocLink from '../components/BlocLink.astro';
+import Footer from '../components/Footer.astro';
 ---
 
 <Layout>
+  <MenuHome />
+
   <main>
-    <h1 class="h1-bold" style="padding: var(--space-128); text-align: center;">
-      Portfolio — Coming soon
-    </h1>
+    <!-- ════ Hero ════ -->
+    <section class="hero">
+      <img
+        class="hero__pattern"
+        src="/images/hero/Motif UI UX High + Nom.png"
+        alt=""
+      />
+    </section>
+
+    <!-- ════ Présentation ════ -->
+    <section class="presentation">
+      <PhotoTitle
+        photoSrc="/images/photo.jpg"
+        lineLight="Je suis"
+        lineBold="Curieux et créatif"
+      />
+      <div class="presentation__text">
+        <p class="text-md">Ayant plus de 5 ans d'expérience en agence, je suis touche-à-tout et exploite ma polyvalence à travers tout le processus de design, de la discovery jusqu'à la réalisation de maquettes et prototypes finaux.</p>
+      </div>
+    </section>
+
+    <!-- ════ Mes projets ════ -->
+    <SectionTitle title="Mes projets" />
+
+    <BlocProject
+      clientLight="Bouygues"
+      clientBold="Quickconnect"
+      description="Réinventer la gestion de l'information sur les chantiers"
+      chips={["UI Design", "UX Design", "Design System", "BTP & Construction"]}
+      imageSrc="/images/projects/Bouygues/Mockup QuickConnect Home.png"
+      backgroundSrc="/images/projects/Bouygues/Fond.jpg"
+    />
+
+    <BlocProject
+      clientLight="FDJ"
+      clientBold="Innomillion Vivatech"
+      description="Gamifier une expérience pour valoriser l'innovation"
+      chips={["UI Design", "UX Design", "Événementiel & Salon", "Jeux d'argent"]}
+      imageSrc="/images/projects/FDJ/Mockup Vivatech@3-878x878.png"
+      backgroundSrc="/images/projects/FDJ/Fond_FDJ.png"
+    />
+
+    <BlocProject
+      clientLight="Thales"
+      clientBold="Parking"
+      description="Réinventer le parcours utilisateur dans son expérience du parking"
+      chips={["UI Design", "UX Design", "Design System", "Écologie", "Parking & Transport"]}
+      imageSrc="/images/projects/Thales/Mockup Thales Ecotick + Super.png"
+      backgroundSrc="/images/projects/Thales/Fond.png"
+    />
+
+    <BlocProject
+      clientLight="Colas"
+      clientBold="Management Assist'"
+      description="Gamifier un outil de remontée terrain sur les chantiers"
+      chips={["UI Design", "UX Design", "Charte Graphique", "BTP & Construction"]}
+      imageSrc="/images/projects/Colas/Mockup Vivatech@3-878x878.png"
+      backgroundSrc="/images/projects/Colas/Fond_FDJ.png"
+    />
+
+    <!-- ════ Aperçu ════ -->
+    <section class="apercu">
+      <h2 class="h1-bold apercu__dots">...</h2>
+      <div class="apercu__card">
+        <h3 class="h3-bold">Ce n'est qu'un aperçu !</h3>
+        <p class="text-md apercu__text">Plateforme médicale, e-commerce pour des voyages linguistiques, RH et newsletters, gamification pour les jeux d'argent… j'ai eu l'opportunité de travailler sur de nombreux projets variés. N'hésitez pas à me contacter pour en découvrir davantage !</p>
+      </div>
+    </section>
+
+    <!-- ════ Mes skills en plus ════ -->
+    <SectionTitle title="Mes skills en plus" />
+
+    <section class="skills" id="skills">
+      <BlocSkills
+        title="Je crée des illus"
+        description="Dessiner sans dépasser des lignes la plupart du temps"
+        imageSrc="/images/skills/Capture d'écran 2024-10-04 à 22.56.29.png"
+      />
+      <BlocSkills
+        title="Je conçois des jeux"
+        description="Y jouer c'est bien, les faire c'est encore mieux !"
+        imageSrc="/images/skills/Capture d'écran 2024-10-04 à 22.58.26.png"
+      />
+      <BlocSkills
+        title="Je modélise en 3D"
+        description="Pour ajouter une nouvelle dimension à mon travail"
+        imageSrc="/images/skills/Capture d'écran 2024-10-04 à 22.59.59.png"
+      />
+    </section>
+
+    <!-- ════ Contact ════ -->
+    <section class="contact" id="contact">
+      <h2 class="h1-bold">Envie d'en voir plus ? D'en discuter ?</h2>
+      <div class="contact__links">
+        <BlocLink
+          label="Arthur Jeunechamp"
+          iconSrc="/images/icons/Icon - LK.png"
+          href="https://www.linkedin.com/in/arthur-jeunechamp/"
+        />
+        <BlocLink
+          label="arthur.jeunechamp@gmail.com"
+          iconSrc="/images/icons/Icon - Mail.png"
+          href="mailto:arthur.jeunechamp@gmail.com"
+        />
+        <BlocLink
+          label="CV - Arthur Jeunechamp"
+          iconSrc="/images/icons/Icon - CV.png"
+        />
+      </div>
+    </section>
+
+    <!-- ════ Footer ════ -->
+    <Footer patternSrc="/images/footer/Motif UI UX pour boucle.png" />
   </main>
 </Layout>
+
+<style>
+  /* ── Hero ── */
+  .hero {
+    width: 100%;
+    height: 686px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero__pattern {
+    width: 3596px;
+    max-width: none;
+    height: auto;
+    object-fit: cover;
+  }
+
+  /* ── Présentation ── */
+  .presentation {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-32);
+    padding: var(--space-128) var(--content-padding) var(--space-48);
+  }
+
+  .presentation__text {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 300px;
+    max-width: 700px;
+  }
+
+  .presentation__text p {
+    color: var(--color-blue-400);
+  }
+
+  /* ── Aperçu ── */
+  .apercu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--space-32) var(--content-padding);
+  }
+
+  .apercu__dots {
+    margin-bottom: var(--space-16);
+  }
+
+  .apercu__card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-32);
+    background-color: var(--color-blue-850);
+    border-radius: var(--radius-md);
+  }
+
+  .apercu__text {
+    color: var(--color-blue-400);
+  }
+
+  /* ── Skills ── */
+  .skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-64);
+    padding: 0 var(--content-padding);
+  }
+
+  /* ── Contact ── */
+  .contact {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-32);
+    padding: var(--space-128) var(--content-padding) var(--space-64);
+  }
+
+  .contact__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-16) var(--space-32);
+  }
+</style>

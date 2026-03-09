@@ -6,17 +6,19 @@ interface Props {
 const { label } = Astro.props;
 ---
 
-<span class="chip text-md-bold">{label}</span>
+<span class="chip">{label}</span>
 
 <style>
   .chip {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: var(--space-8) var(--space-16);
-    background-color: var(--color-blue-400);
+    padding: 4px 12px;
+    background-color: var(--color-blue-500);
     color: var(--color-cream);
     border-radius: var(--radius-full);
+    font-size: 16px;
+    font-weight: var(--font-weight-regular);
     white-space: nowrap;
   }
 </style>

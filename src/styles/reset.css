@@ -20,7 +20,7 @@ body {
   font-weight: var(--font-weight-regular);
   color: var(--color-cream);
   background-color: var(--color-blue-800);
-  line-height: 1;
+  line-height: normal;
 }
 
 img,

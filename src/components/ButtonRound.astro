@@ -18,15 +18,19 @@ const { href = '#', ariaLabel = 'Voir le projet' } = Astro.props;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 56px;
-    height: 56px;
+    width: var(--space-56);
+    height: var(--space-56);
     background-color: var(--color-cream);
     border-radius: var(--radius-full);
-    transition: background-color 0.2s ease, transform 0.2s ease;
+    transition: background-color 0.2s ease;
+    flex-shrink: 0;
   }
 
   .button-round:hover {
-    background-color: var(--color-cream);
-    transform: scale(1.05);
+    background-color: var(--color-red-300);
+  }
+
+  .button-round:active {
+    background-color: var(--color-red-400);
   }
 </style>

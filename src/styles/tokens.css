@@ -6,12 +6,17 @@
 :root {
   /* ── Colors ── */
   --color-cream:       #FEF7E1;
+  --color-red-400:     #ED6D3F;
+  --color-red-300:     #FDC787;
+  --color-blue-300:    #A3C6CC;
   --color-blue-400:    #4381C3;
+  --color-blue-500:    #306AA9;
+  --color-blue-700:    #022858;
   --color-blue-800:    #031334;
   --color-blue-850:    #001128;
   --color-overlay:     rgba(0, 17, 40, 0.6);
+  --color-blue-modal:  rgba(3, 19, 52, 0.7);
   --color-grey:        #D9D9D9;
-  --color-blue-500:    #306AA9;
 
   /* ── Typography ── */
   --font-family:       'SUSE', sans-serif;
@@ -20,6 +25,7 @@
   --font-size-h2:      36px;
   --font-size-h3:      24px;
   --font-size-body:    20px;
+  --font-size-sm:      16px;
 
   --font-weight-light:   300;
   --font-weight-regular: 400;
@@ -33,11 +39,14 @@
   --glow-title: 0 0 41.2px rgba(254, 247, 225, 0.5);
 
   /* ── Spacing ── */
+  --space-4:   4px;
   --space-8:   8px;
+  --space-12:  12px;
   --space-16:  16px;
   --space-24:  24px;
   --space-32:  32px;
   --space-48:  48px;
+  --space-56:  56px;
   --space-64:  64px;
   --space-128: 128px;
 
@@ -46,7 +55,23 @@
   --radius-md:   32px;
   --radius-full: 999px;
 
-  /* ── Layout ── */
-  --max-width:   1440px;
-  --content-padding: var(--space-128);
+  /* ── Layout / Responsive ── */
+  --max-width:        1440px;
+  --margin-page-up:   64px;
+  --margin-page:      128px;
+  --hero-height:      1200px;
+  --header-width:     72px;
+  --min-img:          400px;
+  --content-padding:  var(--margin-page);
+}
+
+@media (max-width: 768px) {
+  :root {
+    --margin-page-up:  32px;
+    --margin-page:     48px;
+    --hero-height:     800px;
+    --header-width:    56px;
+    --min-img:         200px;
+    --content-padding: var(--margin-page);
+  }
 }

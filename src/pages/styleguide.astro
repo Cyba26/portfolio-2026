@@ -1,103 +1,285 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import SectionTitle from '../components/SectionTitle.astro';
 import Chip from '../components/Chip.astro';
 import ButtonRound from '../components/ButtonRound.astro';
 import PhotoTitle from '../components/PhotoTitle.astro';
 import BlocSkills from '../components/BlocSkills.astro';
 import BlocLink from '../components/BlocLink.astro';
 import MenuHome from '../components/MenuHome.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import BlocProject from '../components/BlocProject.astro';
+import ProjectThumbnail from '../components/ProjectThumbnail.astro';
+import Footer from '../components/Footer.astro';
 ---
 
 <Layout title="Styleguide — Design System">
   <MenuHome />
   <main class="styleguide">
 
-    <!-- Colors -->
+    <h1 class="sg-page-title">Design System</h1>
+
+    <!-- ══════════════════════════════════════════
+         1. COLORS
+         ══════════════════════════════════════════ -->
     <section class="sg-section">
-      <h2 class="h1-bold">Couleurs</h2>
+      <h2 class="sg-section__title">Couleurs</h2>
+
+      <h3 class="sg-subsection__title">Gamme Red / Cream</h3>
       <div class="sg-colors">
+        <div class="sg-color" style="background: var(--color-red-400);">
+          <span>Red 400<br/>#ED6D3F</span>
+        </div>
+        <div class="sg-color" style="background: var(--color-red-300);">
+          <span style="color: #031334;">Red 300<br/>#FDC787</span>
+        </div>
         <div class="sg-color" style="background: var(--color-cream);">
-          <span style="color: #031334;">Cream<br/>#FEF7E1</span>
+          <span style="color: #031334;">Cream (Red 200)<br/>#FEF7E1</span>
+        </div>
+      </div>
+
+      <h3 class="sg-subsection__title">Gamme Blue</h3>
+      <div class="sg-colors">
+        <div class="sg-color sg-color--dark" style="background: var(--color-blue-850);">
+          <span>Blue 850<br/>#001128</span>
+        </div>
+        <div class="sg-color sg-color--dark" style="background: var(--color-blue-800);">
+          <span>Blue 800<br/>#031334</span>
+        </div>
+        <div class="sg-color sg-color--dark" style="background: var(--color-blue-700);">
+          <span>Blue 700<br/>#022858</span>
+        </div>
+        <div class="sg-color" style="background: var(--color-blue-500);">
+          <span>Blue 500<br/>#306AA9</span>
         </div>
         <div class="sg-color" style="background: var(--color-blue-400);">
           <span>Blue 400<br/>#4381C3</span>
         </div>
-        <div class="sg-color" style="background: var(--color-blue-800); border: 1px solid var(--color-blue-400);">
-          <span>Blue 800<br/>#031334</span>
+        <div class="sg-color" style="background: var(--color-blue-300);">
+          <span style="color: #031334;">Blue 300<br/>#A3C6CC</span>
         </div>
-        <div class="sg-color" style="background: var(--color-blue-850); border: 1px solid var(--color-blue-400);">
-          <span>Blue 850<br/>#001128</span>
+      </div>
+
+      <h3 class="sg-subsection__title">Spéciales</h3>
+      <div class="sg-colors">
+        <div class="sg-color" style="background: rgba(0, 17, 40, 0.6); border: 1px solid var(--color-blue-400);">
+          <span>Overlay<br/>rgba(0,17,40,0.6)</span>
         </div>
-        <div class="sg-color" style="background: var(--color-grey);">
-          <span style="color: #031334;">Grey<br/>#D9D9D9</span>
+        <div class="sg-color" style="background: rgba(3, 19, 52, 0.7); border: 1px solid var(--color-blue-400);">
+          <span>Modal BG<br/>rgba(3,19,52,0.7)</span>
+        </div>
+      </div>
+
+      <h3 class="sg-subsection__title">Couleurs par projet</h3>
+      <div class="sg-colors">
+        <div class="sg-color" style="background: #FAF5EB;">
+          <span style="color: #464B47;">Bouygues BG<br/>#FAF5EB</span>
+        </div>
+        <div class="sg-color" style="background: #0B1740; border: 1px solid var(--color-blue-400);">
+          <span style="color: #E7EDFF;">FDJ BG<br/>#0B1740</span>
+        </div>
+        <div class="sg-color" style="background: #00111D; border: 1px solid var(--color-blue-400);">
+          <span style="color: #F1F5FF;">Thales BG<br/>#00111D</span>
+        </div>
+        <div class="sg-color" style="background: #DFD8C0;">
+          <span style="color: #333333;">Colas BG<br/>#DFD8C0</span>
         </div>
       </div>
     </section>
 
-    <!-- Typography -->
+    <!-- ══════════════════════════════════════════
+         2. TYPOGRAPHY
+         ══════════════════════════════════════════ -->
     <section class="sg-section">
-      <h2 class="h1-bold">Typographie — SUSE</h2>
+      <h2 class="sg-section__title">Typographie — SUSE</h2>
       <div class="sg-typo-list">
-        <p class="h1-light">H1 Light — Je suis</p>
-        <p class="h1-bold">H1 Bold — Curieux et créatif</p>
-        <p class="h2-bold">H2 Bold — Je crée des illus</p>
-        <p class="h3-bold">H3 Bold — Ce n'est qu'un aperçu !</p>
-        <p class="text-md">Text MD — Ayant plus de 5 ans d'expérience en agence...</p>
-        <p class="text-md-bold">Text MD Bold — UI Design</p>
+        <div class="sg-typo-item">
+          <p class="h1-light">H1 Light — Je suis</p>
+          <span class="sg-typo-meta">SUSE Light 300 / 48px / -2%</span>
+        </div>
+        <div class="sg-typo-item">
+          <p class="h1-bold">H1 Bold — Curieux et créatif</p>
+          <span class="sg-typo-meta">SUSE Bold 700 / 48px / -2% / glow</span>
+        </div>
+        <div class="sg-typo-item">
+          <p class="h2-bold">H2 Bold — Je crée des illus</p>
+          <span class="sg-typo-meta">SUSE Bold 700 / 36px / -1%</span>
+        </div>
+        <div class="sg-typo-item">
+          <p class="h3-regular">H3 Regular — Bouygues</p>
+          <span class="sg-typo-meta">SUSE Regular 400 / 24px / -1%</span>
+        </div>
+        <div class="sg-typo-item">
+          <p class="h3-bold">H3 Bold — QuickConnect</p>
+          <span class="sg-typo-meta">SUSE Bold 700 / 24px / -1%</span>
+        </div>
+        <div class="sg-typo-item">
+          <p class="text-md">Text Regular MD — Ayant plus de 5 ans d'expérience...</p>
+          <span class="sg-typo-meta">SUSE Regular 400 / 20px / 0%</span>
+        </div>
+        <div class="sg-typo-item">
+          <p class="text-md-bold">Text Bold MD — UI Design</p>
+          <span class="sg-typo-meta">SUSE Bold 700 / 20px / 0%</span>
+        </div>
+        <div class="sg-typo-item">
+          <p class="text-sm">Text Regular SM — Label chip, texte secondaire</p>
+          <span class="sg-typo-meta">SUSE Regular 400 / 16px / 0%</span>
+        </div>
       </div>
     </section>
 
-    <!-- Spacing -->
+    <!-- ══════════════════════════════════════════
+         3. SPACING
+         ══════════════════════════════════════════ -->
     <section class="sg-section">
-      <h2 class="h1-bold">Espacements</h2>
+      <h2 class="sg-section__title">Espacements</h2>
       <div class="sg-spacings">
-        <div class="sg-spacing-item"><div class="sg-spacing-box" style="width: var(--space-8); height: var(--space-8);"></div><span class="text-md">8px</span></div>
-        <div class="sg-spacing-item"><div class="sg-spacing-box" style="width: var(--space-16); height: var(--space-16);"></div><span class="text-md">16px</span></div>
-        <div class="sg-spacing-item"><div class="sg-spacing-box" style="width: var(--space-24); height: var(--space-24);"></div><span class="text-md">24px</span></div>
-        <div class="sg-spacing-item"><div class="sg-spacing-box" style="width: var(--space-32); height: var(--space-32);"></div><span class="text-md">32px</span></div>
-        <div class="sg-spacing-item"><div class="sg-spacing-box" style="width: var(--space-48); height: var(--space-48);"></div><span class="text-md">48px</span></div>
-        <div class="sg-spacing-item"><div class="sg-spacing-box" style="width: var(--space-64); height: var(--space-64);"></div><span class="text-md">64px</span></div>
+        <div class="sg-spacing-item"><div class="sg-spacing-box" style="width: 4px; height: 4px;"></div><span class="text-sm">4</span></div>
+        <div class="sg-spacing-item"><div class="sg-spacing-box" style="width: 8px; height: 8px;"></div><span class="text-sm">8</span></div>
+        <div class="sg-spacing-item"><div class="sg-spacing-box" style="width: 12px; height: 12px;"></div><span class="text-sm">12</span></div>
+        <div class="sg-spacing-item"><div class="sg-spacing-box" style="width: 16px; height: 16px;"></div><span class="text-sm">16</span></div>
+        <div class="sg-spacing-item"><div class="sg-spacing-box" style="width: 24px; height: 24px;"></div><span class="text-sm">24</span></div>
+        <div class="sg-spacing-item"><div class="sg-spacing-box" style="width: 32px; height: 32px;"></div><span class="text-sm">32</span></div>
+        <div class="sg-spacing-item"><div class="sg-spacing-box" style="width: 48px; height: 48px;"></div><span class="text-sm">48</span></div>
+        <div class="sg-spacing-item"><div class="sg-spacing-box" style="width: 56px; height: 56px;"></div><span class="text-sm">56</span></div>
+        <div class="sg-spacing-item"><div class="sg-spacing-box" style="width: 64px; height: 64px;"></div><span class="text-sm">64</span></div>
+        <div class="sg-spacing-item"><div class="sg-spacing-box" style="width: 128px; height: 128px;"></div><span class="text-sm">128</span></div>
       </div>
     </section>
 
-    <!-- Components -->
+    <!-- ══════════════════════════════════════════
+         4. RESPONSIVE TOKENS
+         ══════════════════════════════════════════ -->
     <section class="sg-section">
-      <h2 class="h1-bold">Composants</h2>
+      <h2 class="sg-section__title">Responsive</h2>
+      <div class="sg-table">
+        <div class="sg-table__header">
+          <span>Variable</span><span>Desktop</span><span>Mobile (&le;768px)</span>
+        </div>
+        <div class="sg-table__row">
+          <span>Margin page up</span><span>64px</span><span>32px</span>
+        </div>
+        <div class="sg-table__row">
+          <span>Margin page</span><span>128px</span><span>48px</span>
+        </div>
+        <div class="sg-table__row">
+          <span>Hero height</span><span>1200px</span><span>800px</span>
+        </div>
+        <div class="sg-table__row">
+          <span>Header width</span><span>72px</span><span>56px</span>
+        </div>
+        <div class="sg-table__row">
+          <span>Min img</span><span>400px</span><span>200px</span>
+        </div>
+      </div>
+    </section>
 
-      <!-- Chip -->
+    <!-- ══════════════════════════════════════════
+         5. COMPONENTS
+         ══════════════════════════════════════════ -->
+    <section class="sg-section">
+      <h2 class="sg-section__title">Composants</h2>
+
+      <!-- ── Chip ── -->
       <div class="sg-component">
-        <h3 class="h2-bold">Chip</h3>
+        <h3 class="sg-component__title">Chip</h3>
+        <p class="sg-component__desc">Blue-500, radius full, padding 4px 12px, text SM cream. Non interactif.</p>
         <div class="sg-component__preview">
           <Chip label="UI Design" />
           <Chip label="UX Design" />
           <Chip label="Design System" />
           <Chip label="Charte Graphique" />
           <Chip label="BTP & Construction" />
-          <Chip label="Événementiel & Salon" />
-          <Chip label="Jeux d'argent" />
-          <Chip label="Écologie" />
-          <Chip label="Parking & Transport" />
         </div>
-      </div>
-
-      <!-- Button Round -->
-      <div class="sg-component">
-        <h3 class="h2-bold">Button Round</h3>
+        <h4 class="sg-component__variant-title">Par projet</h4>
         <div class="sg-component__preview">
-          <ButtonRound />
+          <div class="sg-chip-group">
+            <span class="text-sm" style="color: var(--color-blue-400); margin-bottom: 8px;">Bouygues</span>
+            <div class="sg-chip-row"><Chip label="UI Design" /><Chip label="UX Design" /><Chip label="Design System" /><Chip label="BTP & Construction" /></div>
+          </div>
+          <div class="sg-chip-group">
+            <span class="text-sm" style="color: var(--color-blue-400); margin-bottom: 8px;">FDJ</span>
+            <div class="sg-chip-row"><Chip label="UI Design" /><Chip label="UX Design" /><Chip label="Événementiel & Salon" /><Chip label="Jeux d'argent" /></div>
+          </div>
+          <div class="sg-chip-group">
+            <span class="text-sm" style="color: var(--color-blue-400); margin-bottom: 8px;">Thales</span>
+            <div class="sg-chip-row"><Chip label="UI Design" /><Chip label="UX Design" /><Chip label="Design System" /><Chip label="Écologie" /><Chip label="Parking & Transport" /></div>
+          </div>
+          <div class="sg-chip-group">
+            <span class="text-sm" style="color: var(--color-blue-400); margin-bottom: 8px;">Colas</span>
+            <div class="sg-chip-row"><Chip label="UI Design" /><Chip label="UX Design" /><Chip label="Charte Graphique" /><Chip label="BTP & Construction" /></div>
+          </div>
         </div>
       </div>
 
-      <!-- Section Title -->
+      <!-- ── Button Round ── -->
       <div class="sg-component">
-        <h3 class="h2-bold">Section Title</h3>
-        <SectionTitle title="Mes projets" />
+        <h3 class="sg-component__title">Button Round</h3>
+        <p class="sg-component__desc">56px, radius full, flèche chevron. Hover et clic visibles au survol.</p>
+        <div class="sg-component__preview">
+          <div class="sg-state-group">
+            <span class="sg-state-label">Default</span>
+            <div class="sg-button-demo sg-button-demo--default">
+              <svg width="12" height="16" viewBox="0 0 12 16" fill="none"><path d="M2 2L10 8L2 14" stroke="#031334" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+          <div class="sg-state-group">
+            <span class="sg-state-label">Hover</span>
+            <div class="sg-button-demo sg-button-demo--hover">
+              <svg width="12" height="16" viewBox="0 0 12 16" fill="none"><path d="M2 2L10 8L2 14" stroke="#031334" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+          <div class="sg-state-group">
+            <span class="sg-state-label">Clic</span>
+            <div class="sg-button-demo sg-button-demo--clic">
+              <svg width="12" height="16" viewBox="0 0 12 16" fill="none"><path d="M2 2L10 8L2 14" stroke="#031334" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+          <div class="sg-state-group">
+            <span class="sg-state-label">Interactif</span>
+            <ButtonRound />
+          </div>
+        </div>
       </div>
 
-      <!-- Photo + Title -->
+      <!-- ── Menu Home ── -->
       <div class="sg-component">
-        <h3 class="h2-bold">Photo + Title</h3>
+        <h3 class="sg-component__title">Menu Home (Header)</h3>
+        <p class="sg-component__desc">Fixed top-left. Width: 72px desktop, 56px mobile. Radius bottom 24px.</p>
+        <div class="sg-component__preview" style="min-height: 120px;">
+          <div class="sg-state-group">
+            <span class="sg-state-label">Default</span>
+            <div class="sg-menu-demo sg-menu-demo--default">
+              <img src="/images/logo/Icon 180px - Dark.png" alt="AJ" width="48" height="44" />
+            </div>
+          </div>
+          <div class="sg-state-group">
+            <span class="sg-state-label">Hover</span>
+            <div class="sg-menu-demo sg-menu-demo--hover">
+              <img src="/images/logo/Icon 180px - Light.png" alt="AJ" width="48" height="44" />
+            </div>
+          </div>
+          <div class="sg-state-group">
+            <span class="sg-state-label">Clic</span>
+            <div class="sg-menu-demo sg-menu-demo--clic">
+              <img src="/images/logo/Icon 180px - Light.png" alt="AJ" width="48" height="44" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Section Title ── -->
+      <div class="sg-component">
+        <h3 class="sg-component__title">Section Title</h3>
+        <p class="sg-component__desc">H1 Bold + glow. Padding: 64px vertical, margin-page horizontal.</p>
+        <div class="sg-component__preview sg-component__preview--full">
+          <SectionTitle title="Mes projets" />
+        </div>
+      </div>
+
+      <!-- ── Photo + Title ── -->
+      <div class="sg-component">
+        <h3 class="sg-component__title">Photo + Title</h3>
+        <p class="sg-component__desc">Photo 128px ronde + H1 Light/Bold. Flex-wrap, centré, gap 24px.</p>
         <div class="sg-component__preview">
           <PhotoTitle
             photoSrc="/images/photo.jpg"
@@ -107,48 +289,155 @@ import MenuHome from '../components/MenuHome.astro';
         </div>
       </div>
 
-      <!-- Bloc Skills -->
+      <!-- ── Bloc Link ── -->
       <div class="sg-component">
-        <h3 class="h2-bold">Bloc Skills</h3>
-        <div class="sg-component__preview" style="max-width: 400px;">
-          <BlocSkills
-            title="Je crée des illus"
-            description="Dessiner sans dépasser des lignes la plupart du temps"
-            imageSrc="/images/skills/illus.png"
+        <h3 class="sg-component__title">Bloc Link</h3>
+        <p class="sg-component__desc">Icône 56px + texte Blue-400 Regular MD. Gap 18px.</p>
+        <div class="sg-component__preview" style="flex-direction: column; align-items: flex-start;">
+          <BlocLink label="Arthur Jeunechamp" iconSrc="/images/icons/Icon - LK.png" href="https://linkedin.com" />
+          <BlocLink label="arthur.jeunechamp@gmail.com" iconSrc="/images/icons/Icon - Mail.png" href="mailto:arthur.jeunechamp@gmail.com" />
+          <BlocLink label="CV - Arthur Jeunechamp" iconSrc="/images/icons/Icon - CV.png" href="#" />
+        </div>
+      </div>
+
+      <!-- ── Bloc Skills ── -->
+      <div class="sg-component">
+        <h3 class="sg-component__title">Bloc Skills</h3>
+        <p class="sg-component__desc">H2 Bold + desc Regular MD Blue-400 + image carrée radius 16px. 3 en ligne, gap 64px, flex-wrap.</p>
+        <div class="sg-component__preview sg-component__preview--full">
+          <div class="sg-skills-row">
+            <BlocSkills
+              title="Je crée des illus"
+              description="Quelques exemples d'illustrations fait sur Adobe Illustrator ou Affinity Designer pour des clients... ou pour moi !"
+              imageSrc="/images/skills/illustration/Thumbnail_illustration.png"
+            />
+            <BlocSkills
+              title="Je conçois des jeux"
+              description="Via la techno Pico8, je conçois des petits jeux vidéos"
+              imageSrc="/images/skills/developpement/Thumbnail_developpement.png"
+            />
+            <BlocSkills
+              title="Je modélise en 3D"
+              description="Sur Blender ou sur Spline, voici quelques rendus 3D"
+              imageSrc="/images/skills/modelisation/Thumbnail_modelisation.png"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Bloc Project ── -->
+      <div class="sg-component">
+        <h3 class="sg-component__title">Bloc Project (Home)</h3>
+        <p class="sg-component__desc">BG image + overlay 60% + mockup gauche + infos droite. Flex-wrap responsive.</p>
+        <div class="sg-component__preview sg-component__preview--full sg-component__preview--no-pad">
+          <BlocProject
+            clientLight="Bouygues"
+            clientBold="Quickconnect"
+            description="Réinventer la gestion de l'information sur les chantiers"
+            chips={["UI Design", "UX Design", "Design System", "BTP & Construction"]}
+            imageSrc="/images/projects/Bouygues/Mockup_Home.png"
+            backgroundSrc="/images/projects/Bouygues/Background.jpg"
+            href="/projets/bouygues"
           />
         </div>
       </div>
 
-      <!-- Bloc Link -->
+      <!-- ── Project Thumbnail ── -->
       <div class="sg-component">
-        <h3 class="h2-bold">Bloc Link</h3>
-        <div class="sg-component__preview">
-          <BlocLink label="Arthur Jeunechamp" iconSrc="/images/icons/Icon - LK.png" />
-          <BlocLink label="arthur.jeunechamp@gmail.com" iconSrc="/images/icons/Icon - Mail.png" />
+        <h3 class="sg-component__title">Project Thumbnail</h3>
+        <p class="sg-component__desc">Image 297px radius 32px + titre H3 (Bold + Regular) + chips. 2 en ligne, gap 48px.</p>
+        <div class="sg-component__preview sg-component__preview--full">
+          <div class="sg-thumbnails-row">
+            <ProjectThumbnail
+              titleBold="QuickConnect"
+              titleRegular="Bouygues"
+              chips={["UI Design", "UX Design", "Design System", "BTP & Construction"]}
+              imageSrc="/images/projects/Bouygues/Thumbnail.png"
+              href="/projets/bouygues"
+            />
+            <ProjectThumbnail
+              titleBold="Innomillion Vivatech"
+              titleRegular="FDJ"
+              chips={["UI Design", "UX Design", "Événementiel & Salon", "Jeux d'argent"]}
+              imageSrc="/images/projects/FDJ/Thumbnail.png"
+              href="/projets/fdj"
+            />
+          </div>
         </div>
       </div>
+
+      <!-- ── Footer ── -->
+      <div class="sg-component">
+        <h3 class="sg-component__title">Footer</h3>
+        <p class="sg-component__desc">Blue-800, motif à 33% d'opacité, 245px de hauteur.</p>
+        <div class="sg-component__preview sg-component__preview--full sg-component__preview--no-pad">
+          <Footer patternSrc="/images/footer/Motif UI UX pour boucle.png" />
+        </div>
+      </div>
+
+      <!-- ── Bloc Aperçu ── -->
+      <div class="sg-component">
+        <h3 class="sg-component__title">Bloc Aperçu / Preview</h3>
+        <p class="sg-component__desc">Titre "..." H1 Bold glow + carte Blue-850, radius 32px, padding 32px.</p>
+        <div class="sg-component__preview sg-component__preview--full">
+          <div class="sg-apercu">
+            <p class="h1-bold sg-apercu__dots">...</p>
+            <div class="sg-apercu__card">
+              <p class="h3-bold">Ce n'est qu'un aperçu !</p>
+              <p class="text-md" style="color: var(--color-blue-400);">Plateforme médicale, e-commerce pour des voyages linguistiques, RH et newsletters, gamification pour les jeux d'argent… j'ai eu l'opportunité de travailler sur de nombreux projets variés. N'hésitez pas à me contacter pour en découvrir davantage !</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </section>
 
   </main>
 </Layout>
 
 <style>
+  /* ── Page layout ── */
   .styleguide {
     max-width: var(--max-width);
     margin: 0 auto;
-    padding: var(--space-64);
+    padding: var(--space-64) var(--content-padding);
+    padding-top: 120px;
   }
 
+  .sg-page-title {
+    font-size: 80px;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -1.6px;
+    text-shadow: var(--glow-title);
+    margin-bottom: var(--space-128);
+    line-height: normal;
+  }
+
+  /* ── Sections ── */
   .sg-section {
     margin-bottom: var(--space-128);
   }
 
-  .sg-section > .h1-bold {
+  .sg-section__title {
+    font-size: var(--font-size-h1);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--letter-spacing-h1);
+    line-height: normal;
     margin-bottom: var(--space-48);
     padding-bottom: var(--space-16);
-    border-bottom: 1px solid var(--color-blue-400);
+    border-bottom: 1px solid var(--color-blue-500);
   }
 
+  .sg-subsection__title {
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-blue-400);
+    margin-top: var(--space-32);
+    margin-bottom: var(--space-16);
+    line-height: normal;
+  }
+
+  /* ── Colors ── */
   .sg-colors {
     display: flex;
     flex-wrap: wrap;
@@ -156,31 +445,49 @@ import MenuHome from '../components/MenuHome.astro';
   }
 
   .sg-color {
-    width: 160px;
+    width: 180px;
     height: 120px;
     border-radius: var(--radius-sm);
     display: flex;
-    align-items: end;
+    align-items: flex-end;
     padding: var(--space-16);
   }
 
+  .sg-color--dark {
+    border: 1px solid var(--color-blue-500);
+  }
+
   .sg-color span {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: var(--font-weight-bold);
     line-height: 1.4;
   }
 
+  /* ── Typography ── */
   .sg-typo-list {
     display: flex;
     flex-direction: column;
     gap: var(--space-32);
   }
 
+  .sg-typo-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .sg-typo-meta {
+    font-size: 13px;
+    color: var(--color-blue-400);
+    font-weight: var(--font-weight-regular);
+  }
+
+  /* ── Spacings ── */
   .sg-spacings {
     display: flex;
     flex-wrap: wrap;
-    align-items: end;
-    gap: var(--space-32);
+    align-items: flex-end;
+    gap: var(--space-24);
   }
 
   .sg-spacing-item {
@@ -195,13 +502,63 @@ import MenuHome from '../components/MenuHome.astro';
     border-radius: 4px;
   }
 
+  /* ── Responsive table ── */
+  .sg-table {
+    border: 1px solid var(--color-blue-500);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+
+  .sg-table__header,
+  .sg-table__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--space-16);
+    padding: var(--space-16) var(--space-24);
+  }
+
+  .sg-table__header {
+    background-color: var(--color-blue-850);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-sm);
+  }
+
+  .sg-table__row {
+    border-top: 1px solid var(--color-blue-700);
+    font-size: var(--font-size-sm);
+  }
+
+  .sg-table__row span:first-child {
+    color: var(--color-blue-400);
+  }
+
+  /* ── Components ── */
   .sg-component {
     margin-bottom: var(--space-64);
   }
 
-  .sg-component > .h2-bold {
-    margin-bottom: var(--space-24);
+  .sg-component__title {
+    font-size: var(--font-size-h2);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--letter-spacing-h2);
+    margin-bottom: var(--space-8);
+    color: var(--color-cream);
+    line-height: normal;
+  }
+
+  .sg-component__desc {
+    font-size: var(--font-size-sm);
     color: var(--color-blue-400);
+    margin-bottom: var(--space-24);
+    line-height: normal;
+  }
+
+  .sg-component__variant-title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-blue-400);
+    margin-top: var(--space-24);
+    margin-bottom: var(--space-16);
   }
 
   .sg-component__preview {
@@ -210,7 +567,142 @@ import MenuHome from '../components/MenuHome.astro';
     align-items: center;
     gap: var(--space-16);
     padding: var(--space-32);
-    background-color: var(--color-blue-850);
+    background-color: var(--color-blue-700);
     border-radius: var(--radius-sm);
+  }
+
+  .sg-component__preview--full {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sg-component__preview--no-pad {
+    padding: 0;
+    overflow: hidden;
+  }
+
+  /* ── State demos ── */
+  .sg-state-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-8);
+  }
+
+  .sg-state-label {
+    font-size: 12px;
+    color: var(--color-blue-400);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* Button states */
+  .sg-button-demo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-full);
+  }
+
+  .sg-button-demo--default { background-color: var(--color-cream); }
+  .sg-button-demo--hover { background-color: var(--color-red-300); }
+  .sg-button-demo--clic { background-color: var(--color-red-400); }
+
+  /* Menu states */
+  .sg-menu-demo {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: 72px;
+    height: 82px;
+    padding: 12px;
+    border-radius: 0 0 var(--space-24) var(--space-24);
+  }
+
+  .sg-menu-demo img {
+    width: 48px;
+    height: auto;
+    aspect-ratio: 76 / 70;
+    object-fit: cover;
+  }
+
+  .sg-menu-demo--default { background-color: var(--color-blue-850); }
+  .sg-menu-demo--hover { background-color: var(--color-cream); }
+  .sg-menu-demo--clic { background-color: var(--color-red-300); }
+
+  /* Chip groups */
+  .sg-chip-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .sg-chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-16);
+  }
+
+  /* Skills row */
+  .sg-skills-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-64);
+  }
+
+  /* Thumbnails row */
+  .sg-thumbnails-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-48);
+  }
+
+  /* Aperçu */
+  .sg-apercu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--space-32);
+  }
+
+  .sg-apercu__dots {
+    text-align: center;
+    margin-bottom: var(--space-16);
+  }
+
+  .sg-apercu__card {
+    background-color: var(--color-blue-850);
+    border-radius: var(--radius-md);
+    padding: var(--space-32);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+    align-items: center;
+    text-align: center;
+    max-width: 700px;
+    width: 100%;
+  }
+
+  /* ── Mobile adjustments ── */
+  @media (max-width: 768px) {
+    .styleguide {
+      padding-top: 80px;
+    }
+
+    .sg-page-title {
+      font-size: 48px;
+      margin-bottom: var(--space-64);
+    }
+
+    .sg-color {
+      width: 140px;
+      height: 100px;
+    }
+
+    .sg-skills-row {
+      gap: var(--space-32);
+    }
   }
 </style>

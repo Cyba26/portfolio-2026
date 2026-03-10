@@ -1,21 +1,27 @@
 ---
+import Chip from './Chip.astro';
+
 interface Props {
-  title: string;
+  titleBold: string;
+  titleRegular: string;
   chips: string[];
   imageSrc: string;
   href: string;
 }
 
-const { title, chips, imageSrc, href } = Astro.props;
+const { titleBold, titleRegular, chips, imageSrc, href } = Astro.props;
 ---
 
 <a class="project-thumbnail" href={href}>
   <div class="project-thumbnail__image">
-    <img src={imageSrc} alt={title} loading="lazy" />
+    <img src={imageSrc} alt={`${titleBold} ${titleRegular}`} loading="lazy" />
   </div>
-  <h3 class="h3-bold project-thumbnail__title">{title}</h3>
+  <div class="project-thumbnail__title">
+    <span class="project-thumbnail__title-bold">{titleBold}</span>
+    <span class="project-thumbnail__title-regular">{titleRegular}</span>
+  </div>
   <div class="project-thumbnail__chips">
-    {chips.map((chip) => <span class="project-thumbnail__chip">{chip}</span>)}
+    {chips.map((chip) => <Chip label={chip} />)}
   </div>
 </a>
 
@@ -23,11 +29,11 @@ const { title, chips, imageSrc, href } = Astro.props;
   .project-thumbnail {
     display: flex;
     flex-direction: column;
-    gap: var(--space-16);
+    gap: var(--space-24);
     text-decoration: none;
     color: inherit;
     flex: 1;
-    min-width: 280px;
+    min-width: 200px;
   }
 
   .project-thumbnail__image {
@@ -49,25 +55,27 @@ const { title, chips, imageSrc, href } = Astro.props;
   }
 
   .project-thumbnail__title {
+    display: flex;
+    gap: var(--space-8);
+    align-items: baseline;
+    font-size: var(--font-size-h3);
+    letter-spacing: var(--letter-spacing-h3);
+    line-height: normal;
     color: var(--color-cream);
+    white-space: nowrap;
+  }
+
+  .project-thumbnail__title-bold {
+    font-weight: var(--font-weight-bold);
+  }
+
+  .project-thumbnail__title-regular {
+    font-weight: var(--font-weight-regular);
   }
 
   .project-thumbnail__chips {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-8);
-  }
-
-  .project-thumbnail__chip {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 4px 12px;
-    background-color: var(--color-blue-500);
-    color: var(--color-cream);
-    border-radius: var(--radius-full);
-    font-size: 16px;
-    font-weight: var(--font-weight-regular);
-    white-space: nowrap;
+    gap: var(--space-16);
   }
 </style>

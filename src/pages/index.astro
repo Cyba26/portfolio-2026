@@ -151,7 +151,7 @@ import Footer from '../components/Footer.astro';
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 0;
+    z-index: 2;
   }
 
   .hero__pattern {
@@ -172,7 +172,7 @@ import Footer from '../components/Footer.astro';
     border-radius: var(--radius-full);
     background: var(--color-blue-850);
     pointer-events: none;
-    transform: scale(0.4);
+    transform: scale(0.2);
     z-index: 1;
   }
 
@@ -184,7 +184,7 @@ import Footer from '../components/Footer.astro';
     align-items: center;
     gap: var(--space-32);
     padding: var(--space-128) var(--content-padding) var(--space-48);
-    z-index: 2;
+    z-index: 3;
   }
 
   .presentation__text {
@@ -263,7 +263,7 @@ import Footer from '../components/Footer.astro';
       const rect = section.getBoundingClientRect();
       const viewH = window.innerHeight;
       const progress = Math.max(0, Math.min(1, 1 - rect.top / viewH));
-      const scale = 0.4 + progress * 1.2;
+      const scale = 0.2 + progress * 1.4;
       circle.style.transform = `scale(${scale})`;
     }
 

@@ -13,6 +13,9 @@ import Footer from '../components/Footer.astro';
   <MenuHome />
 
   <main>
+    <!-- ════ Cercle scroll ════ -->
+    <div class="presentation__circle" id="presentation-circle"></div>
+
     <!-- ════ Hero ════ -->
     <section class="hero">
       <img
@@ -24,15 +27,12 @@ import Footer from '../components/Footer.astro';
 
     <!-- ════ Présentation ════ -->
     <section class="presentation" id="presentation">
-      <div class="presentation__circle" id="presentation-circle"></div>
       <PhotoTitle
         photoSrc="/images/photo.jpg"
         lineLight="Je suis"
         lineBold="Curieux et créatif"
       />
-      <div class="presentation__text">
-        <p class="text-md">Ayant plus de 5 ans d'expérience en agence, je suis touche-à-tout et exploite ma polyvalence à travers tout le processus de design, de la discovery jusqu'à la réalisation de maquettes et prototypes finaux.</p>
-      </div>
+      <p class="text-md presentation__text">Ayant plus de 5 ans d'expérience en agence, je suis touche-à-tout et exploite ma polyvalence à travers tout le processus de design, de la discovery jusqu'à la réalisation de maquettes et prototypes finaux.</p>
     </section>
 
     <!-- ════ Mes projets ════ -->
@@ -138,14 +138,20 @@ import Footer from '../components/Footer.astro';
 </Layout>
 
 <style>
+  main {
+    position: relative;
+  }
+
   /* ── Hero ── */
   .hero {
+    position: relative;
     width: 100%;
     height: 686px;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 0;
   }
 
   .hero__pattern {
@@ -155,44 +161,35 @@ import Footer from '../components/Footer.astro';
     object-fit: cover;
   }
 
+  /* ── Cercle scroll ── */
+  .presentation__circle {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 800px;
+    height: 800px;
+    margin-left: -400px;
+    border-radius: var(--radius-full);
+    background: var(--color-blue-850);
+    pointer-events: none;
+    transform: scale(0.4);
+    z-index: 1;
+  }
+
   /* ── Présentation ── */
   .presentation {
     position: relative;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
     gap: var(--space-32);
     padding: var(--space-128) var(--content-padding) var(--space-48);
-  }
-
-  .presentation__circle {
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    border-radius: var(--radius-full);
-    background: radial-gradient(circle, var(--color-blue-700) 0%, transparent 70%);
-    pointer-events: none;
-    transform: scale(0.4);
-    transition: transform 0.1s linear;
-    z-index: 0;
-  }
-
-  .presentation > :not(.presentation__circle) {
-    position: relative;
-    z-index: 1;
+    z-index: 2;
   }
 
   .presentation__text {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 320px;
-    max-width: 700px;
-  }
-
-  .presentation__text p {
+    max-width: 600px;
+    text-align: center;
     color: var(--color-blue-400);
   }
 
@@ -254,16 +251,24 @@ import Footer from '../components/Footer.astro';
     const circle = document.getElementById('presentation-circle');
     if (!section || !circle) return;
 
+    // Position circle vertically centered on the presentation section
+    function positionCircle() {
+      const sectionTop = section.offsetTop;
+      const sectionH = section.offsetHeight;
+      const circleH = 800;
+      circle.style.top = `${sectionTop + sectionH / 2 - circleH / 2}px`;
+    }
+
     function onScroll() {
       const rect = section.getBoundingClientRect();
       const viewH = window.innerHeight;
-      // progress: 0 when section enters viewport bottom, 1 when it reaches top
       const progress = Math.max(0, Math.min(1, 1 - rect.top / viewH));
-      // scale from 0.4 to 1.6
       const scale = 0.4 + progress * 1.2;
       circle.style.transform = `scale(${scale})`;
     }
 
+    positionCircle();
+    window.addEventListener('resize', positionCircle);
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
   }

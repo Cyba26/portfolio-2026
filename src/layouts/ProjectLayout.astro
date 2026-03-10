@@ -126,6 +126,12 @@ const {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .project-image img.loaded {
+    opacity: 1;
   }
 
   .project-image video {
@@ -171,6 +177,18 @@ const {
     onScroll();
   }
 
-  document.addEventListener('DOMContentLoaded', initParallax);
-  document.addEventListener('astro:page-load', initParallax);
+  function initFadeIn() {
+    const images = document.querySelectorAll('.project-image img');
+    images.forEach((img) => {
+      const el = img as HTMLImageElement;
+      if (el.complete) {
+        el.classList.add('loaded');
+      } else {
+        el.addEventListener('load', () => el.classList.add('loaded'));
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => { initParallax(); initFadeIn(); });
+  document.addEventListener('astro:page-load', () => { initParallax(); initFadeIn(); });
 </script>

@@ -70,18 +70,50 @@ import Footer from '../components/Footer.astro';
       </div>
 
       <h3 class="sg-subsection__title">Couleurs par projet</h3>
-      <div class="sg-colors">
-        <div class="sg-color" style="background: #FAF5EB;">
-          <span style="color: #464B47;">Bouygues BG<br/>#FAF5EB</span>
+      <div class="sg-project-colors">
+        <div class="sg-project-card">
+          <span class="sg-project-card__label">Bouygues</span>
+          <div class="sg-project-card__pair">
+            <div class="sg-color" style="background: #FAF5EB;">
+              <span style="color: #464B47;">BG<br/>#FAF5EB</span>
+            </div>
+            <div class="sg-color" style="background: #464B47;">
+              <span style="color: #FAF5EB;">Typo<br/>#464B47</span>
+            </div>
+          </div>
         </div>
-        <div class="sg-color" style="background: #0B1740; border: 1px solid var(--color-blue-400);">
-          <span style="color: #E7EDFF;">FDJ BG<br/>#0B1740</span>
+        <div class="sg-project-card">
+          <span class="sg-project-card__label">FDJ</span>
+          <div class="sg-project-card__pair">
+            <div class="sg-color sg-color--dark" style="background: #0B1740;">
+              <span style="color: #E7EDFF;">BG<br/>#0B1740</span>
+            </div>
+            <div class="sg-color" style="background: #E7EDFF;">
+              <span style="color: #0B1740;">Typo<br/>#E7EDFF</span>
+            </div>
+          </div>
         </div>
-        <div class="sg-color" style="background: #00111D; border: 1px solid var(--color-blue-400);">
-          <span style="color: #F1F5FF;">Thales BG<br/>#00111D</span>
+        <div class="sg-project-card">
+          <span class="sg-project-card__label">Thales</span>
+          <div class="sg-project-card__pair">
+            <div class="sg-color sg-color--dark" style="background: #00111D;">
+              <span style="color: #F1F5FF;">BG<br/>#00111D</span>
+            </div>
+            <div class="sg-color" style="background: #F1F5FF;">
+              <span style="color: #00111D;">Typo<br/>#F1F5FF</span>
+            </div>
+          </div>
         </div>
-        <div class="sg-color" style="background: #DFD8C0;">
-          <span style="color: #333333;">Colas BG<br/>#DFD8C0</span>
+        <div class="sg-project-card">
+          <span class="sg-project-card__label">Colas</span>
+          <div class="sg-project-card__pair">
+            <div class="sg-color" style="background: #DFD8C0;">
+              <span style="color: #333333;">BG<br/>#DFD8C0</span>
+            </div>
+            <div class="sg-color" style="background: #333333;">
+              <span style="color: #DFD8C0;">Typo<br/>#333333</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -461,6 +493,30 @@ import Footer from '../components/Footer.astro';
     font-size: 13px;
     font-weight: var(--font-weight-bold);
     line-height: 1.4;
+  }
+
+  /* ── Project colors ── */
+  .sg-project-colors {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-24);
+  }
+
+  .sg-project-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .sg-project-card__label {
+    font-size: 13px;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-blue-400);
+  }
+
+  .sg-project-card__pair {
+    display: flex;
+    gap: var(--space-8);
   }
 
   /* ── Typography ── */

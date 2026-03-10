@@ -262,7 +262,9 @@ import Footer from '../components/Footer.astro';
     function onScroll() {
       const rect = section.getBoundingClientRect();
       const viewH = window.innerHeight;
-      const progress = Math.max(0, Math.min(1, 1 - rect.top / viewH));
+      // Scroll range: from section entering viewport bottom to section halfway off top
+      const scrollRange = viewH + viewH * 0.5;
+      const progress = Math.max(0, Math.min(1, (viewH - rect.top) / scrollRange));
       const scale = 0.2 + progress * 1.4;
       circle.style.transform = `scale(${scale})`;
     }

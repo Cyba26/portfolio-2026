@@ -163,9 +163,9 @@ const { clientLight, clientBold, description, chips, imageSrc, backgroundSrc, hr
         const rect = project.getBoundingClientRect();
         const blockCenter = rect.top + rect.height / 2;
         const distFromCenter = Math.abs(blockCenter - viewCenter);
-        const maxDist = viewH;
+        const maxDist = viewH * 0.4;
 
-        // Proximity: 1 when centered, 0 when far
+        // Proximity: 1 when centered, 0 when far (tight zone)
         const proximity = Math.max(0, 1 - distFromCenter / maxDist);
 
         // Overlay: darker when far (0.95), lighter when centered (0.55)

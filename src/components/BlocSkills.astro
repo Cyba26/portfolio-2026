@@ -10,7 +10,7 @@ const { title, description, imageSrc, href } = Astro.props;
 const Tag = href ? 'a' : 'div';
 ---
 
-<Tag class="bloc-skills" href={href}>
+<Tag class="bloc-skills fade-in" href={href}>
   <h3 class="h2-bold">{title}</h3>
   <p class="text-md bloc-skills__desc">{description}</p>
   <div class="bloc-skills__image">

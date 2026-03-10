@@ -26,7 +26,7 @@ import Footer from '../components/Footer.astro';
     </section>
 
     <!-- ════ Présentation ════ -->
-    <section class="presentation" id="presentation">
+    <section class="presentation fade-in" id="presentation">
       <PhotoTitle
         photoSrc="/images/photo.jpg"
         lineLight="Je suis"
@@ -79,7 +79,7 @@ import Footer from '../components/Footer.astro';
     />
 
     <!-- ════ Aperçu ════ -->
-    <section class="apercu">
+    <section class="apercu fade-in">
       <h2 class="h1-bold apercu__dots">...</h2>
       <div class="apercu__card">
         <h3 class="h3-bold">Ce n'est qu'un aperçu !</h3>
@@ -90,7 +90,7 @@ import Footer from '../components/Footer.astro';
     <!-- ════ Mes skills en plus ════ -->
     <SectionTitle title="Mes skills en plus" />
 
-    <section class="skills" id="skills">
+    <section class="skills fade-in" id="skills">
       <BlocSkills
         title="Je crée des illus"
         description="Dessiner sans dépasser des lignes la plupart du temps"
@@ -112,7 +112,7 @@ import Footer from '../components/Footer.astro';
     </section>
 
     <!-- ════ Contact ════ -->
-    <section class="contact" id="contact">
+    <section class="contact fade-in" id="contact">
       <h2 class="h1-bold">Envie d'en voir plus ? D'en discuter ?</h2>
       <div class="contact__links">
         <BlocLink
@@ -288,7 +288,7 @@ import Footer from '../components/Footer.astro';
         const heroH = hero.offsetHeight;
         const parallaxY = scrollY * 0.5;
         const fadeProgress = Math.min(1, scrollY / heroH);
-        const opacity = 1 - fadeProgress * 0.5;
+        const opacity = 1 - fadeProgress * 0.9;
         heroPattern.style.transform = `translateY(${parallaxY}px)`;
         heroPattern.style.opacity = `${opacity}`;
       }
@@ -298,6 +298,18 @@ import Footer from '../components/Footer.astro';
     window.addEventListener('resize', positionCircle);
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+
+    // Fade-in on scroll with IntersectionObserver
+    const fadeEls = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in--visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    fadeEls.forEach((el) => observer.observe(el));
   }
 
   document.addEventListener('DOMContentLoaded', initScrollEffects);

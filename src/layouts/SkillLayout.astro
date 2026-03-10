@@ -124,13 +124,17 @@ const { title, description, iconSrc, pageTitle } = Astro.props;
     position: fixed;
     inset: 0;
     z-index: 200;
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
   }
 
   .skill-modal--open {
-    display: flex;
+    pointer-events: auto;
+    opacity: 1;
   }
 
   .skill-modal__backdrop {
@@ -141,13 +145,21 @@ const { title, description, iconSrc, pageTitle } = Astro.props;
 
   .skill-modal__content {
     position: relative;
-    max-width: 80vw;
-    max-height: 80vh;
+    max-width: 90vw;
+    max-height: 90vh;
+    transform: scale(0.85);
+    transition: transform 0.3s ease;
+  }
+
+  .skill-modal--open .skill-modal__content {
+    transform: scale(1);
   }
 
   .skill-modal__img {
     width: 100%;
     height: 100%;
+    max-width: 90vw;
+    max-height: 90vh;
     object-fit: contain;
     border-radius: var(--radius-md);
   }
@@ -161,6 +173,13 @@ const { title, description, iconSrc, pageTitle } = Astro.props;
     const modalImg = modal.querySelector('.skill-modal__img') as HTMLImageElement;
     const backdrop = modal.querySelector('.skill-modal__backdrop');
 
+    function closeModal() {
+      modal.classList.remove('skill-modal--open');
+      modal.addEventListener('transitionend', () => {
+        modalImg.src = '';
+      }, { once: true });
+    }
+
     document.querySelectorAll('.skill-item').forEach((item) => {
       item.addEventListener('click', () => {
         const img = item.querySelector('img');
@@ -171,15 +190,11 @@ const { title, description, iconSrc, pageTitle } = Astro.props;
       });
     });
 
-    backdrop?.addEventListener('click', () => {
-      modal.classList.remove('skill-modal--open');
-      modalImg.src = '';
-    });
+    backdrop?.addEventListener('click', closeModal);
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        modal.classList.remove('skill-modal--open');
-        modalImg.src = '';
+      if (e.key === 'Escape' && modal.classList.contains('skill-modal--open')) {
+        closeModal();
       }
     });
   }

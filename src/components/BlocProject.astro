@@ -53,7 +53,7 @@ const { clientLight, clientBold, description, chips, imageSrc, backgroundSrc, hr
     padding: var(--space-48) var(--content-padding);
     text-decoration: none;
     color: inherit;
-    cursor: pointer;
+    cursor: default;
   }
 
   .bloc-project__bg {
@@ -87,6 +87,7 @@ const { clientLight, clientBold, description, chips, imageSrc, backgroundSrc, hr
     align-items: center;
     justify-content: center;
     gap: var(--space-16);
+    cursor: pointer;
   }
 
   .bloc-project__image {
@@ -105,7 +106,7 @@ const { clientLight, clientBold, description, chips, imageSrc, backgroundSrc, hr
     transform: translateY(var(--parallax-y, 0px));
   }
 
-  .bloc-project:hover .bloc-project__image img {
+  .bloc-project__content:hover .bloc-project__image img {
     transform: translateY(var(--parallax-y, 0px)) scale(1.03);
   }
 
@@ -145,7 +146,7 @@ const { clientLight, clientBold, description, chips, imageSrc, backgroundSrc, hr
     transition: transform 0.3s ease, background-color 0.2s ease;
   }
 
-  .bloc-project:hover .bloc-project__button {
+  .bloc-project__content:hover .bloc-project__button {
     transform: scale(1.1);
     background-color: var(--color-red-300);
   }

@@ -3,18 +3,20 @@ interface Props {
   title: string;
   description: string;
   imageSrc: string;
+  href?: string;
 }
 
-const { title, description, imageSrc } = Astro.props;
+const { title, description, imageSrc, href } = Astro.props;
+const Tag = href ? 'a' : 'div';
 ---
 
-<div class="bloc-skills">
+<Tag class="bloc-skills" href={href}>
   <h3 class="h2-bold">{title}</h3>
   <p class="text-md bloc-skills__desc">{description}</p>
   <div class="bloc-skills__image">
     <img src={imageSrc} alt={title} loading="lazy" />
   </div>
-</div>
+</Tag>
 
 <style>
   .bloc-skills {
@@ -22,7 +24,9 @@ const { title, description, imageSrc } = Astro.props;
     display: flex;
     flex-direction: column;
     gap: 22px;
-    min-width: 200px;
+    min-width: 240px;
+    text-decoration: none;
+    color: inherit;
   }
 
   .bloc-skills__desc {

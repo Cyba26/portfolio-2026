@@ -1,0 +1,114 @@
+---
+import Layout from './Layout.astro';
+import MenuHome from '../components/MenuHome.astro';
+import BlocLink from '../components/BlocLink.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  iconSrc: string;
+  pageTitle?: string;
+}
+
+const { title, description, iconSrc, pageTitle } = Astro.props;
+---
+
+<Layout title={pageTitle || title}>
+  <MenuHome />
+
+  <main>
+    <section class="skill-hero">
+      <img class="skill-hero__icon" src={iconSrc} alt="" />
+      <h1 class="h1-bold">{title}</h1>
+      <p class="text-md skill-hero__desc">{description}</p>
+    </section>
+
+    <section class="skill-content">
+      <slot />
+    </section>
+
+    <section class="contact">
+      <h2 class="h1-bold">Envie d'en voir plus ? D'en discuter ?</h2>
+      <div class="contact__links">
+        <BlocLink
+          label="Arthur Jeunechamp"
+          iconSrc="/images/icons/Icon - LK.png"
+          href="https://www.linkedin.com/in/arthur-jeunechamp/"
+        />
+        <BlocLink
+          label="arthur.jeunechamp@gmail.com"
+          iconSrc="/images/icons/Icon - Mail.png"
+          href="mailto:arthur.jeunechamp@gmail.com"
+        />
+        <BlocLink
+          label="CV - Arthur Jeunechamp"
+          iconSrc="/images/icons/Icon - CV.png"
+        />
+      </div>
+    </section>
+
+    <Footer patternSrc="/images/footer/Motif UI UX pour boucle.png" />
+  </main>
+</Layout>
+
+<style>
+  .skill-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-32);
+    padding-top: var(--margin-page-up);
+    padding-left: var(--content-padding);
+    padding-right: var(--content-padding);
+  }
+
+  .skill-hero__icon {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+  }
+
+  .skill-hero__desc {
+    color: var(--color-blue-400);
+    text-align: center;
+    max-width: 400px;
+  }
+
+  .skill-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-48);
+    padding: var(--space-64) var(--content-padding);
+  }
+
+  .contact {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-32);
+    padding: var(--space-128) var(--content-padding) var(--space-64);
+  }
+
+  .contact__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-16) var(--space-32);
+  }
+</style>
+
+<style is:global>
+  .skill-item {
+    flex: 1;
+    min-width: var(--min-img);
+    height: 568px;
+    border-radius: var(--space-24);
+    overflow: hidden;
+  }
+
+  .skill-item img,
+  .skill-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>

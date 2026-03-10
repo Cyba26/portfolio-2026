@@ -1,6 +1,5 @@
 ---
 import Chip from './Chip.astro';
-import ButtonRound from './ButtonRound.astro';
 
 interface Props {
   clientLight: string;
@@ -12,10 +11,10 @@ interface Props {
   href?: string;
 }
 
-const { clientLight, clientBold, description, chips, imageSrc, backgroundSrc, href } = Astro.props;
+const { clientLight, clientBold, description, chips, imageSrc, backgroundSrc, href = '#' } = Astro.props;
 ---
 
-<section class="bloc-project">
+<a class="bloc-project" href={href}>
   <div class="bloc-project__bg">
     <img src={backgroundSrc} alt="" loading="lazy" />
     <div class="bloc-project__overlay"></div>
@@ -38,16 +37,22 @@ const { clientLight, clientBold, description, chips, imageSrc, backgroundSrc, hr
         {chips.map((chip) => <Chip label={chip} />)}
       </div>
 
-      <ButtonRound href={href} ariaLabel={`Voir le projet ${clientBold}`} />
+      <div class="bloc-project__button" aria-hidden="true">
+        <svg width="12" height="16" viewBox="0 0 12 16" fill="none"><path d="M2 2L10 8L2 14" stroke="#031334" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
     </div>
   </div>
-</section>
+</a>
 
 <style>
   .bloc-project {
+    display: block;
     position: relative;
     width: 100%;
-    padding: var(--space-48) var(--space-64);
+    padding: var(--space-48) var(--content-padding);
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
   }
 
   .bloc-project__bg {
@@ -88,6 +93,11 @@ const { clientLight, clientBold, description, chips, imageSrc, backgroundSrc, hr
     width: 100%;
     height: auto;
     object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .bloc-project:hover .bloc-project__image img {
+    transform: scale(1.03);
   }
 
   .bloc-project__info {
@@ -112,5 +122,22 @@ const { clientLight, clientBold, description, chips, imageSrc, backgroundSrc, hr
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-16);
+  }
+
+  .bloc-project__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--space-56);
+    height: var(--space-56);
+    background-color: var(--color-cream);
+    border-radius: var(--radius-full);
+    flex-shrink: 0;
+    transition: transform 0.3s ease, background-color 0.2s ease;
+  }
+
+  .bloc-project:hover .bloc-project__button {
+    transform: scale(1.1);
+    background-color: var(--color-red-300);
   }
 </style>

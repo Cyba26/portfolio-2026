@@ -263,7 +263,7 @@ import Footer from '../components/Footer.astro';
         const descTop = section.offsetTop + desc.offsetTop;
         const centerY = (titleBottom + descTop) / 2;
         const circleH = 800;
-        circle.style.top = `${centerY - circleH / 2}px`;
+        circle.style.top = `${centerY - circleH / 2 - 20}px`;
       } else {
         const sectionTop = section.offsetTop;
         const sectionH = section.offsetHeight;

@@ -208,6 +208,22 @@ const { title, description, iconSrc, pageTitle } = Astro.props;
     });
   }
 
-  document.addEventListener('DOMContentLoaded', initModal);
-  document.addEventListener('astro:page-load', initModal);
+  function initScrollFadeIn() {
+    const elements = document.querySelectorAll('.skill-item, .skill-hero, .contact');
+    elements.forEach((el) => el.classList.add('fade-in'));
+
+    const fadeEls = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in--visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    fadeEls.forEach((el) => observer.observe(el));
+  }
+
+  document.addEventListener('DOMContentLoaded', () => { initModal(); initScrollFadeIn(); });
+  document.addEventListener('astro:page-load', () => { initModal(); initScrollFadeIn(); });
 </script>

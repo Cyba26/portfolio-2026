@@ -179,7 +179,7 @@ const { clientLight, clientBold, description, chips, imageSrc, backgroundSrc, hr
         }
 
         // Parallax offset based on scroll position relative to element
-        const scrollOffset = (rect.top - viewCenter) * 0.08;
+        const scrollOffset = (rect.top - viewCenter) * 0.15;
 
         // Background image parallax
         const bgImg = project.querySelector('.bloc-project__bg img') as HTMLElement;
@@ -190,7 +190,7 @@ const { clientLight, clientBold, description, chips, imageSrc, backgroundSrc, hr
         // Mockup image parallax (uses CSS custom property to preserve hover scale)
         const mockupImg = project.querySelector('.bloc-project__image img') as HTMLElement;
         if (mockupImg) {
-          const mockupOffset = (rect.top - viewCenter) * 0.04;
+          const mockupOffset = (rect.top - viewCenter) * 0.08;
           mockupImg.style.setProperty('--parallax-y', `${mockupOffset}px`);
         }
       });

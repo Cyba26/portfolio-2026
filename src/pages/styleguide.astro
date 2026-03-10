@@ -407,6 +407,31 @@ import Footer from '../components/Footer.astro';
         </div>
       </div>
 
+      <!-- ── Skill Layout ── -->
+      <div class="sg-component">
+        <h3 class="sg-component__title">Skill Layout</h3>
+        <p class="sg-component__desc">Layout des pages compétences : hero (icône 300px + H1 Bold glow + description centrée), grille d'images carrées cliquables avec modal de preview.</p>
+        <div class="sg-component__preview sg-component__preview--full">
+          <div class="sg-skill-hero-demo">
+            <img class="sg-skill-hero-demo__icon" src="/images/skills/illustration/Icon_illustration.png" alt="" />
+            <p class="h1-bold">Illustration</p>
+            <p class="text-md" style="color: var(--color-blue-400); text-align: center; max-width: 400px;">Quelques exemples d'illustrations fait sur Adobe Illustrator ou Affinity Designer</p>
+          </div>
+        </div>
+        <h4 class="sg-component__variant-title">Grille d'images (skill-item)</h4>
+        <p class="sg-component__desc">Images carrées (aspect-ratio 1:1), radius 24px, 2 colonnes flex-wrap, gap 48px. Clic = modal preview plein écran.</p>
+        <div class="sg-component__preview">
+          <div class="sg-skill-item-demo">
+            <img src="/images/skills/illustration/Illu_1.png" alt="Illustration 1" loading="lazy" />
+          </div>
+          <div class="sg-skill-item-demo">
+            <img src="/images/skills/illustration/Illu_2.png" alt="Illustration 2" loading="lazy" />
+          </div>
+        </div>
+        <h4 class="sg-component__variant-title">Modal Preview</h4>
+        <p class="sg-component__desc">Backdrop rgba(3,19,52,0.7), image max 80vw/80vh, radius MD. Fermeture par clic backdrop ou Escape.</p>
+      </div>
+
       <!-- ── Bloc Aperçu ── -->
       <div class="sg-component">
         <h3 class="sg-component__title">Bloc Aperçu / Preview</h3>
@@ -739,6 +764,34 @@ import Footer from '../components/Footer.astro';
     text-align: center;
     max-width: 700px;
     width: 100%;
+  }
+
+  /* Skill layout demo */
+  .sg-skill-hero-demo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-32);
+    padding: var(--space-32) 0;
+  }
+
+  .sg-skill-hero-demo__icon {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+  }
+
+  .sg-skill-item-demo {
+    width: 200px;
+    aspect-ratio: 1;
+    border-radius: var(--space-24);
+    overflow: hidden;
+  }
+
+  .sg-skill-item-demo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   /* ── Mobile adjustments ── */

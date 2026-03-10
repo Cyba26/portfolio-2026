@@ -44,6 +44,12 @@ const {
     height: auto;
     aspect-ratio: 76 / 70;
     object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .menu-home__logo.loaded {
+    opacity: 1;
   }
 
   .menu-home__logo--dark {
@@ -66,3 +72,18 @@ const {
     }
   }
 </style>
+
+<script>
+  function initMenuLogos() {
+    document.querySelectorAll('.menu-home__logo').forEach((img) => {
+      const el = img as HTMLImageElement;
+      if (el.complete) {
+        el.classList.add('loaded');
+      } else {
+        el.addEventListener('load', () => el.classList.add('loaded'));
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded', initMenuLogos);
+  document.addEventListener('astro:page-load', initMenuLogos);
+</script>

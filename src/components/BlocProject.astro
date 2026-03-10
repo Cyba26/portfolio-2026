@@ -105,11 +105,11 @@ const { clientLight, clientBold, description, chips, imageSrc, backgroundSrc, hr
     object-fit: cover;
     will-change: transform;
     transition: transform 0.4s ease;
-    transform: translateY(var(--parallax-y, 0px));
+    transform: translateY(var(--parallax-y, 0px)) rotate(var(--parallax-rot, 0deg));
   }
 
   .bloc-project__content:hover .bloc-project__image img {
-    transform: translateY(var(--parallax-y, 0px)) scale(1.05);
+    transform: translateY(var(--parallax-y, 0px)) rotate(var(--parallax-rot, 0deg)) scale(1.05);
   }
 
   .bloc-project__info {
@@ -192,6 +192,8 @@ const { clientLight, clientBold, description, chips, imageSrc, backgroundSrc, hr
         if (mockupImg) {
           const mockupOffset = (rect.top - viewCenter) * 0.08;
           mockupImg.style.setProperty('--parallax-y', `${mockupOffset}px`);
+          const rotation = (rect.top - viewCenter) * 0.008;
+          mockupImg.style.setProperty('--parallax-rot', `${rotation}deg`);
         }
       });
     }

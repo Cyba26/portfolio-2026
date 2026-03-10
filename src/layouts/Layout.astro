@@ -31,3 +31,18 @@ const { title = 'Arthur Jeunechamp — Product Designer' } = Astro.props;
   @import '../styles/reset.css';
   @import '../styles/typography.css';
 </style>
+
+<script>
+  function initImgLoad() {
+    document.querySelectorAll('img').forEach((img) => {
+      if (img.complete) {
+        img.classList.add('img-loaded');
+      } else {
+        img.addEventListener('load', () => img.classList.add('img-loaded'));
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initImgLoad);
+  document.addEventListener('astro:page-load', initImgLoad);
+</script>

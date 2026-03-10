@@ -159,6 +159,7 @@ import Footer from '../components/Footer.astro';
     max-width: none;
     height: auto;
     object-fit: cover;
+    will-change: transform, opacity;
   }
 
   /* ── Cercle scroll ── */
@@ -246,27 +247,51 @@ import Footer from '../components/Footer.astro';
 </style>
 
 <script>
-  function initCircleScroll() {
+  function initScrollEffects() {
     const section = document.getElementById('presentation');
     const circle = document.getElementById('presentation-circle');
+    const heroPattern = document.querySelector('.hero__pattern') as HTMLElement;
+    const hero = document.querySelector('.hero') as HTMLElement;
     if (!section || !circle) return;
 
-    // Position circle vertically centered on the presentation section
+    // Position circle centered between PhotoTitle and description text
     function positionCircle() {
-      const sectionTop = section.offsetTop;
-      const sectionH = section.offsetHeight;
-      const circleH = 800;
-      circle.style.top = `${sectionTop + sectionH / 2 - circleH / 2}px`;
+      const photoTitle = section.querySelector('.photo-title') as HTMLElement;
+      const desc = section.querySelector('.presentation__text') as HTMLElement;
+      if (photoTitle && desc) {
+        const titleBottom = section.offsetTop + photoTitle.offsetTop + photoTitle.offsetHeight;
+        const descTop = section.offsetTop + desc.offsetTop;
+        const centerY = (titleBottom + descTop) / 2;
+        const circleH = 800;
+        circle.style.top = `${centerY - circleH / 2}px`;
+      } else {
+        const sectionTop = section.offsetTop;
+        const sectionH = section.offsetHeight;
+        const circleH = 800;
+        circle.style.top = `${sectionTop + sectionH / 2 - circleH / 2}px`;
+      }
     }
 
     function onScroll() {
       const rect = section.getBoundingClientRect();
       const viewH = window.innerHeight;
-      // Scroll range: from section entering viewport bottom to section halfway off top
+
+      // Circle zoom
       const scrollRange = viewH + viewH * 0.5;
       const progress = Math.max(0, Math.min(1, (viewH - rect.top) / scrollRange));
       const scale = 0.2 + progress * 1.4;
       circle.style.transform = `scale(${scale})`;
+
+      // Hero parallax: moves at 50% scroll speed + fades from 100% to 50%
+      if (heroPattern && hero) {
+        const scrollY = window.scrollY;
+        const heroH = hero.offsetHeight;
+        const parallaxY = scrollY * 0.5;
+        const fadeProgress = Math.min(1, scrollY / heroH);
+        const opacity = 1 - fadeProgress * 0.5;
+        heroPattern.style.transform = `translateY(${parallaxY}px)`;
+        heroPattern.style.opacity = `${opacity}`;
+      }
     }
 
     positionCircle();
@@ -275,6 +300,6 @@ import Footer from '../components/Footer.astro';
     onScroll();
   }
 
-  document.addEventListener('DOMContentLoaded', initCircleScroll);
-  document.addEventListener('astro:page-load', initCircleScroll);
+  document.addEventListener('DOMContentLoaded', initScrollEffects);
+  document.addEventListener('astro:page-load', initScrollEffects);
 </script>

@@ -23,7 +23,8 @@ import Footer from '../components/Footer.astro';
     </section>
 
     <!-- ════ Présentation ════ -->
-    <section class="presentation">
+    <section class="presentation" id="presentation">
+      <div class="presentation__circle" id="presentation-circle"></div>
       <PhotoTitle
         photoSrc="/images/photo.jpg"
         lineLight="Je suis"
@@ -156,11 +157,30 @@ import Footer from '../components/Footer.astro';
 
   /* ── Présentation ── */
   .presentation {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
     gap: var(--space-32);
     padding: var(--space-128) var(--content-padding) var(--space-48);
+  }
+
+  .presentation__circle {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: var(--radius-full);
+    background: radial-gradient(circle, var(--color-blue-700) 0%, transparent 70%);
+    pointer-events: none;
+    transform: scale(0.4);
+    transition: transform 0.1s linear;
+    z-index: 0;
+  }
+
+  .presentation > :not(.presentation__circle) {
+    position: relative;
+    z-index: 1;
   }
 
   .presentation__text {
@@ -227,3 +247,27 @@ import Footer from '../components/Footer.astro';
     gap: var(--space-16) var(--space-32);
   }
 </style>
+
+<script>
+  function initCircleScroll() {
+    const section = document.getElementById('presentation');
+    const circle = document.getElementById('presentation-circle');
+    if (!section || !circle) return;
+
+    function onScroll() {
+      const rect = section.getBoundingClientRect();
+      const viewH = window.innerHeight;
+      // progress: 0 when section enters viewport bottom, 1 when it reaches top
+      const progress = Math.max(0, Math.min(1, 1 - rect.top / viewH));
+      // scale from 0.4 to 1.6
+      const scale = 0.4 + progress * 1.2;
+      circle.style.transform = `scale(${scale})`;
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  document.addEventListener('DOMContentLoaded', initCircleScroll);
+  document.addEventListener('astro:page-load', initCircleScroll);
+</script>

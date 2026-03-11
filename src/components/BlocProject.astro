@@ -9,12 +9,13 @@ interface Props {
   imageSrc: string;
   backgroundSrc: string;
   href?: string;
+  bgColor?: string;
 }
 
-const { clientLight, clientBold, description, chips, imageSrc, backgroundSrc, href = '#' } = Astro.props;
+const { clientLight, clientBold, description, chips, imageSrc, backgroundSrc, href = '#', bgColor } = Astro.props;
 ---
 
-<a class="bloc-project fade-in" href={href}>
+<a class="bloc-project fade-in" href={href} data-bg-color={bgColor}>
   <div class="bloc-project__bg">
     <img src={backgroundSrc} alt="" loading="lazy" />
     <div class="bloc-project__overlay"></div>
@@ -167,9 +168,10 @@ const { clientLight, clientBold, description, chips, imageSrc, backgroundSrc, hr
 </style>
 
 <script>
-  function initProjectParallax() {
-    const projects = document.querySelectorAll('.bloc-project');
+  function initProjectBlocs() {
+    const projects = document.querySelectorAll('.bloc-project') as NodeListOf<HTMLAnchorElement>;
 
+    // ── Parallax on scroll ──
     function onScroll() {
       const viewH = window.innerHeight;
       const viewCenter = viewH / 2;
@@ -180,26 +182,21 @@ const { clientLight, clientBold, description, chips, imageSrc, backgroundSrc, hr
         const distFromCenter = Math.abs(blockCenter - viewCenter);
         const maxDist = viewH * 0.4;
 
-        // Proximity: 1 when centered, 0 when far (tight zone)
         const proximity = Math.max(0, 1 - distFromCenter / maxDist);
 
-        // Overlay: darker when far (0.95), lighter when centered (0.55)
         const overlay = project.querySelector('.bloc-project__overlay') as HTMLElement;
         if (overlay) {
           const overlayAlpha = 0.95 - proximity * 0.4;
           overlay.style.backgroundColor = `rgba(0, 17, 40, ${overlayAlpha})`;
         }
 
-        // Parallax offset based on scroll position relative to element
         const scrollOffset = (rect.top - viewCenter) * 0.15;
 
-        // Background image parallax
         const bgImg = project.querySelector('.bloc-project__bg img') as HTMLElement;
         if (bgImg) {
           bgImg.style.transform = `translateY(${scrollOffset}px)`;
         }
 
-        // Mockup image parallax (uses CSS custom property to preserve hover scale)
         const mockupImg = project.querySelector('.bloc-project__image img') as HTMLElement;
         if (mockupImg) {
           const mockupOffset = (rect.top - viewCenter) * 0.08 + 40;
@@ -212,8 +209,81 @@ const { clientLight, clientBold, description, chips, imageSrc, backgroundSrc, hr
 
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+
+    // ── Circle transition on click ──
+    projects.forEach((project) => {
+      project.addEventListener('click', (e) => {
+        e.preventDefault();
+        const href = project.getAttribute('href');
+        if (!href || href === '#') return;
+
+        const btn = project.querySelector('.bloc-project__button') as HTMLElement;
+        if (!btn) { window.location.href = href; return; }
+
+        const btnRect = btn.getBoundingClientRect();
+        const cx = btnRect.left + btnRect.width / 2;
+        const cy = btnRect.top + btnRect.height / 2;
+
+        // Calculate scale needed to cover entire viewport from button center
+        const maxX = Math.max(cx, window.innerWidth - cx);
+        const maxY = Math.max(cy, window.innerHeight - cy);
+        const maxRadius = Math.sqrt(maxX * maxX + maxY * maxY);
+        const btnRadius = btnRect.width / 2;
+        const targetScale = (maxRadius / btnRadius) * 1.1;
+
+        // Circle 1 — cream color, expands from button
+        const circle1 = document.createElement('div');
+        circle1.style.cssText = `
+          position: fixed;
+          left: ${cx - btnRadius}px;
+          top: ${cy - btnRadius}px;
+          width: ${btnRadius * 2}px;
+          height: ${btnRadius * 2}px;
+          border-radius: 50%;
+          background-color: #FEF7E1;
+          transform: scale(1);
+          transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+          z-index: 9998;
+          pointer-events: none;
+        `;
+        document.body.appendChild(circle1);
+
+        requestAnimationFrame(() => {
+          circle1.style.transform = `scale(${targetScale})`;
+        });
+
+        // Circle 2 — project background color, 500ms delay
+        const bgColor = project.getAttribute('data-bg-color');
+        setTimeout(() => {
+          const circle2 = document.createElement('div');
+          circle2.style.cssText = `
+            position: fixed;
+            left: ${cx - btnRadius}px;
+            top: ${cy - btnRadius}px;
+            width: ${btnRadius * 2}px;
+            height: ${btnRadius * 2}px;
+            border-radius: 50%;
+            background-color: ${bgColor || '#031334'};
+            transform: scale(1);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 9999;
+            pointer-events: none;
+          `;
+          document.body.appendChild(circle2);
+
+          requestAnimationFrame(() => {
+            circle2.style.transform = `scale(${targetScale})`;
+          });
+
+          // Navigate once circle 2 has covered the screen
+          setTimeout(() => {
+            window.location.href = href;
+          }, 450);
+        }, 500);
+      });
+    });
   }
 
-  document.addEventListener('DOMContentLoaded', initProjectParallax);
-  document.addEventListener('astro:page-load', initProjectParallax);
+  document.addEventListener('DOMContentLoaded', initProjectBlocs);
+  document.addEventListener('astro:page-load', initProjectBlocs);
 </script>

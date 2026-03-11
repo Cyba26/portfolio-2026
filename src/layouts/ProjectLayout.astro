@@ -147,9 +147,9 @@ const {
 
   .parallax-layer {
     position: absolute;
-    inset: -15%;
-    width: 130%;
-    height: 130%;
+    inset: 0;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
   }
 
@@ -223,12 +223,15 @@ const {
       currentMouseX += (mouseX - currentMouseX) * 0.08;
       currentMouseY += (mouseY - currentMouseY) * 0.08;
 
+      // Max displacement in px to avoid showing edges
+      const maxDisplace = 30;
+
       layers.forEach((layer, index) => {
         const scrollSpeed = index * 0.08;
         const yScroll = scrollY * scrollSpeed;
         const mouseSpeed = mouseSpeeds[index] || mouseSpeeds[mouseSpeeds.length - 1];
-        const xMouse = currentMouseX * mouseSpeed;
-        const yMouse = currentMouseY * mouseSpeed;
+        const xMouse = Math.max(-maxDisplace, Math.min(maxDisplace, currentMouseX * mouseSpeed));
+        const yMouse = Math.max(-maxDisplace, Math.min(maxDisplace, currentMouseY * mouseSpeed));
         (layer as HTMLElement).style.transform = `translate(${xMouse}px, ${yScroll + yMouse}px)`;
       });
 

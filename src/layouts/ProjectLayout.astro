@@ -206,24 +206,44 @@ const {
     const layers = header.querySelectorAll('.parallax-layer');
     if (!layers.length) return;
 
-    function onScroll() {
+    // Mouse tracking speeds per layer: 2%, 6%, 11%
+    const mouseSpeeds = [0.02, 0.06, 0.11];
+    let mouseX = 0;
+    let mouseY = 0;
+    let currentMouseX = 0;
+    let currentMouseY = 0;
+    let animating = false;
+
+    function updateTransforms() {
       const rect = header!.getBoundingClientRect();
       const windowHeight = window.innerHeight;
-
-      // Only apply when header is in viewport
-      if (rect.bottom < 0 || rect.top > windowHeight) return;
-
       const scrollY = window.scrollY;
 
+      // Smooth lerp for mouse movement
+      currentMouseX += (mouseX - currentMouseX) * 0.08;
+      currentMouseY += (mouseY - currentMouseY) * 0.08;
+
       layers.forEach((layer, index) => {
-        const speed = index * 0.08;
-        const yOffset = scrollY * speed;
-        (layer as HTMLElement).style.transform = `translateY(${yOffset}px)`;
+        const scrollSpeed = index * 0.08;
+        const yScroll = scrollY * scrollSpeed;
+        const mouseSpeed = mouseSpeeds[index] || mouseSpeeds[mouseSpeeds.length - 1];
+        const xMouse = currentMouseX * mouseSpeed;
+        const yMouse = currentMouseY * mouseSpeed;
+        (layer as HTMLElement).style.transform = `translate(${xMouse}px, ${yScroll + yMouse}px)`;
       });
+
+      animating = true;
+      requestAnimationFrame(updateTransforms);
     }
 
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+    window.addEventListener('mousemove', (e) => {
+      // Offset from center of viewport
+      mouseX = (e.clientX - window.innerWidth / 2);
+      mouseY = (e.clientY - window.innerHeight / 2);
+    });
+
+    // Start animation loop
+    updateTransforms();
   }
 
   function initModal() {

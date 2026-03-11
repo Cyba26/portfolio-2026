@@ -54,6 +54,10 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://www.arthurjeunechamp.c
   </head>
   <body>
     <slot />
+    <script>
+      import { inject } from '@vercel/analytics';
+      inject();
+    </script>
   </body>
 </html>
 

@@ -1,0 +1,47 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MenuHome from '../components/MenuHome.astro';
+---
+
+<Layout title="404 — Page introuvable">
+  <MenuHome />
+
+  <main class="error-page">
+    <h1 class="h1-bold">404</h1>
+    <p class="text-md error-page__text">Cette page n'existe pas ou a été déplacée.</p>
+    <a class="error-page__link" href="/">Retour à l'accueil</a>
+  </main>
+</Layout>
+
+<style>
+  .error-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-24);
+    min-height: 80vh;
+    padding: var(--content-padding);
+    text-align: center;
+  }
+
+  .error-page__text {
+    color: var(--color-blue-400);
+  }
+
+  .error-page__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-12) var(--space-32);
+    background-color: var(--color-cream);
+    color: var(--color-blue-800);
+    border-radius: var(--radius-full);
+    font-weight: var(--font-weight-bold);
+    transition: transform 0.3s ease;
+  }
+
+  .error-page__link:hover {
+    transform: scale(1.05);
+  }
+</style>

@@ -294,14 +294,15 @@ import Footer from '../components/Footer.astro';
       const scale = 0.2 + progress * 1.4;
       circle.style.transform = `scale(${scale})`;
 
-      // Hero parallax: moves at 50% scroll speed + fades from 100% to 50%
+      // Hero parallax: moves at 50% scroll speed + fades + dezooms
       if (heroPattern && hero) {
         const scrollY = window.scrollY;
         const heroH = hero.offsetHeight;
         const parallaxY = scrollY * 0.5;
         const fadeProgress = Math.min(1, scrollY / heroH);
         const opacity = 1 - fadeProgress * 0.9;
-        heroPattern.style.transform = `translateY(${parallaxY}px)`;
+        const scale = 1 - fadeProgress * 0.15;
+        heroPattern.style.transform = `translateY(${parallaxY}px) scale(${scale})`;
         heroPattern.style.opacity = `${opacity}`;
       }
     }

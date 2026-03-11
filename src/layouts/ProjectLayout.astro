@@ -68,6 +68,20 @@ const {
     color: var(--project-text);
     margin: 0 var(--space-24);
     border-radius: 0 0 var(--radius-md) var(--radius-md);
+    animation: container-reveal 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  @keyframes container-reveal {
+    from {
+      margin-left: 0;
+      margin-right: 0;
+      border-radius: 0;
+    }
+    to {
+      margin-left: var(--space-24);
+      margin-right: var(--space-24);
+      border-radius: 0 0 var(--radius-md) var(--radius-md);
+    }
   }
 
   .project-container__inner {

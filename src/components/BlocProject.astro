@@ -100,12 +100,13 @@ const { clientLight, clientBold, description, chips, imageSrc, backgroundSrc, hr
   }
 
   .bloc-project__image img {
-    width: 100%;
+    width: 80%;
     height: auto;
     object-fit: cover;
     will-change: transform;
     transition: transform 0.4s ease;
     transform: translateY(var(--parallax-y, 0px)) rotate(var(--parallax-rot, 0deg));
+    margin: 0 auto;
   }
 
   .bloc-project__content:hover .bloc-project__image img {
@@ -157,6 +158,10 @@ const { clientLight, clientBold, description, chips, imageSrc, backgroundSrc, hr
     .bloc-project__image {
       width: 100%;
       min-width: 0;
+    }
+
+    .bloc-project__image img {
+      width: 90%;
     }
 
     .bloc-project__info {

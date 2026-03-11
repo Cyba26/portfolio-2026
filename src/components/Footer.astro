@@ -30,4 +30,12 @@ const { patternSrc } = Astro.props;
     opacity: 0.33;
     pointer-events: none;
   }
+
+  @media (max-width: 768px) {
+    .footer__pattern {
+      object-fit: none;
+      object-position: center;
+      transform: scale(0.6);
+    }
+  }
 </style>

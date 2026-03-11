@@ -152,6 +152,18 @@ const { clientLight, clientBold, description, chips, imageSrc, backgroundSrc, hr
     transform: scale(1.1);
     background-color: var(--color-red-300);
   }
+
+  @media (max-width: 768px) {
+    .bloc-project__image {
+      width: 100%;
+      min-width: 0;
+    }
+
+    .bloc-project__info {
+      min-width: 0;
+      width: 100%;
+    }
+  }
 </style>
 
 <script>

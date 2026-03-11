@@ -245,6 +245,7 @@ const { clientLight, clientBold, description, chips, imageSrc, backgroundSrc, hr
           el.style.zIndex = '' + zIndex;
           el.style.pointerEvents = 'none';
           el.style.willChange = 'transform';
+          el.classList.add('circle-transition');
           document.body.appendChild(el);
           // Force reflow so scale(0) is painted before animating
           el.getBoundingClientRect();
@@ -268,6 +269,13 @@ const { clientLight, clientBold, description, chips, imageSrc, backgroundSrc, hr
       });
     });
   }
+
+  // Clean up transition circles when navigating back (bfcache)
+  window.addEventListener('pageshow', (e) => {
+    if (e.persisted) {
+      document.querySelectorAll('.circle-transition').forEach((el) => el.remove());
+    }
+  });
 
   document.addEventListener('DOMContentLoaded', initProjectBlocs);
   document.addEventListener('astro:page-load', initProjectBlocs);

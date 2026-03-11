@@ -452,6 +452,19 @@ import Footer from '../components/Footer.astro';
   </main>
 </Layout>
 
+<script>
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('fade-in--visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  fadeEls.forEach((el) => observer.observe(el));
+</script>
+
 <style>
   /* ── Page layout ── */
   .styleguide {

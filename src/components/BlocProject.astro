@@ -95,7 +95,7 @@ const { clientLight, clientBold, description, chips, imageSrc, backgroundSrc, hr
 
   .bloc-project__image {
     flex-shrink: 0;
-    width: 600px;
+    width: 510px;
     min-width: 300px;
   }
 
@@ -202,7 +202,7 @@ const { clientLight, clientBold, description, chips, imageSrc, backgroundSrc, hr
         // Mockup image parallax (uses CSS custom property to preserve hover scale)
         const mockupImg = project.querySelector('.bloc-project__image img') as HTMLElement;
         if (mockupImg) {
-          const mockupOffset = (rect.top - viewCenter) * 0.08;
+          const mockupOffset = (rect.top - viewCenter) * 0.08 + 40;
           mockupImg.style.setProperty('--parallax-y', `${mockupOffset}px`);
           const rotation = (rect.top - viewCenter) * 0.008;
           mockupImg.style.setProperty('--parallax-rot', `${rotation}deg`);

@@ -224,58 +224,43 @@ const { clientLight, clientBold, description, chips, imageSrc, backgroundSrc, hr
         const cx = btnRect.left + btnRect.width / 2;
         const cy = btnRect.top + btnRect.height / 2;
 
-        // Calculate scale needed to cover entire viewport from button center
+        // Scale needed to cover entire viewport from button center
         const maxX = Math.max(cx, window.innerWidth - cx);
         const maxY = Math.max(cy, window.innerHeight - cy);
         const maxRadius = Math.sqrt(maxX * maxX + maxY * maxY);
         const btnRadius = btnRect.width / 2;
         const targetScale = (maxRadius / btnRadius) * 1.1;
 
-        // Circle 1 — cream color, expands from button
-        const circle1 = document.createElement('div');
-        circle1.style.cssText = `
-          position: fixed;
-          left: ${cx - btnRadius}px;
-          top: ${cy - btnRadius}px;
-          width: ${btnRadius * 2}px;
-          height: ${btnRadius * 2}px;
-          border-radius: 50%;
-          background-color: #FEF7E1;
-          transform: scale(1);
-          transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-          z-index: 9998;
-          pointer-events: none;
-        `;
-        document.body.appendChild(circle1);
+        // Helper: create + animate a circle from button position
+        function spawnCircle(color: string, zIndex: number, duration: string) {
+          const el = document.createElement('div');
+          el.style.position = 'fixed';
+          el.style.left = (cx - btnRadius) + 'px';
+          el.style.top = (cy - btnRadius) + 'px';
+          el.style.width = (btnRadius * 2) + 'px';
+          el.style.height = (btnRadius * 2) + 'px';
+          el.style.borderRadius = '50%';
+          el.style.backgroundColor = color;
+          el.style.transform = 'scale(0)';
+          el.style.zIndex = '' + zIndex;
+          el.style.pointerEvents = 'none';
+          el.style.willChange = 'transform';
+          document.body.appendChild(el);
+          // Force reflow so scale(0) is painted before animating
+          el.getBoundingClientRect();
+          el.style.transition = 'transform ' + duration + ' cubic-bezier(0.4, 0, 0.2, 1)';
+          el.style.transform = 'scale(' + targetScale + ')';
+        }
 
-        requestAnimationFrame(() => {
-          circle1.style.transform = `scale(${targetScale})`;
-        });
+        // Circle 1 — cream
+        spawnCircle('#FEF7E1', 9998, '0.6s');
 
-        // Circle 2 — project background color, 500ms delay
+        // Circle 2 — project bg color, after 500ms
         const bgColor = project.getAttribute('data-bg-color');
         setTimeout(() => {
-          const circle2 = document.createElement('div');
-          circle2.style.cssText = `
-            position: fixed;
-            left: ${cx - btnRadius}px;
-            top: ${cy - btnRadius}px;
-            width: ${btnRadius * 2}px;
-            height: ${btnRadius * 2}px;
-            border-radius: 50%;
-            background-color: ${bgColor || '#031334'};
-            transform: scale(1);
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 9999;
-            pointer-events: none;
-          `;
-          document.body.appendChild(circle2);
+          spawnCircle(bgColor || '#031334', 9999, '0.5s');
 
-          requestAnimationFrame(() => {
-            circle2.style.transform = `scale(${targetScale})`;
-          });
-
-          // Navigate once circle 2 has covered the screen
+          // Navigate once circle 2 covers the screen
           setTimeout(() => {
             window.location.href = href;
           }, 450);

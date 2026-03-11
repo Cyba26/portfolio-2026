@@ -244,27 +244,37 @@ const { clientLight, clientBold, description, chips, imageSrc, backgroundSrc, hr
           el.style.transform = 'scale(0)';
           el.style.zIndex = '' + zIndex;
           el.style.pointerEvents = 'none';
-          el.style.willChange = 'transform';
+          el.style.willChange = 'transform, opacity';
+          el.style.opacity = '1';
           document.body.appendChild(el);
           // Force reflow so scale(0) is painted before animating
           el.getBoundingClientRect();
-          el.style.transition = 'transform ' + duration + ' cubic-bezier(0.4, 0, 0.2, 1)';
+          el.style.transition = 'transform ' + duration + ' cubic-bezier(0.55, 0, 1, 0.45)';
           el.style.transform = 'scale(' + targetScale + ')';
+          return el;
         }
 
         // Circle 1 — cream
-        spawnCircle('#FEF7E1', 9998, '0.6s');
+        const circle1 = spawnCircle('#FEF7E1', 9998, '0.5s');
 
-        // Circle 2 — project bg color, after 500ms
+        // Circle 2 — project bg color, after 100ms
         const bgColor = project.getAttribute('data-bg-color');
         setTimeout(() => {
-          spawnCircle(bgColor || '#031334', 9999, '0.5s');
+          const circle2 = spawnCircle(bgColor || '#031334', 9999, '0.45s');
 
-          // Navigate once circle 2 covers the screen
+          // Once circle 2 covers the screen, fade out both circles to reveal the new page
           setTimeout(() => {
-            window.location.href = href;
+            circle1.style.transition = 'opacity 0.4s ease';
+            circle2.style.transition = 'opacity 0.4s ease';
+            circle1.style.opacity = '0';
+            circle2.style.opacity = '0';
+
+            // Navigate after fade-out completes
+            setTimeout(() => {
+              window.location.href = href;
+            }, 400);
           }, 450);
-        }, 500);
+        }, 100);
       });
     });
   }

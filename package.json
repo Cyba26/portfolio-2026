@@ -6,11 +6,12 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "start": "npx serve dist -p ${PORT:-3000}",
     "astro": "astro"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.1",
-    "@vercel/analytics": "^2.0.0",
-    "astro": "^5.17.1"
+    "astro": "^5.17.1",
+    "serve": "^14.2.4"
   }
 }

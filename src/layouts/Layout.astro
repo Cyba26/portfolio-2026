@@ -54,10 +54,8 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://www.arthurjeunechamp.c
   </head>
   <body>
     <slot />
-    <script>
-      import { inject } from '@vercel/analytics';
-      inject();
-    </script>
+    <!-- Umami Analytics — à remplacer avec le script fourni par ton instance Umami -->
+    <!-- <script defer src="https://umami.ton-domaine.com/script.js" data-website-id="TON-WEBSITE-ID"></script> -->
   </body>
 </html>
 

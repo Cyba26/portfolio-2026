@@ -1,6 +1,6 @@
 name: Railway nightly restart (anti-connexions-bloquées)
 
-# Redémarre (sans rebuild) une liste de services Railway chaque nuit, pour
+# Redémarre (sans rebuild) les services Railway restants chaque nuit, pour
 # éviter que des connexions/sockets qui traînent empêchent le mode sleep
 # de s'enclencher. Ne fait aucun appel IA : juste des requêtes HTTP vers
 # l'API publique de Railway, sur un runner GitHub Actions standard.
@@ -11,6 +11,10 @@ name: Railway nightly restart (anti-connexions-bloquées)
 #    variables > Actions > New repository secret > nom "RAILWAY_API_TOKEN",
 #    colle le token.
 # 3. Place ce fichier dans .github/workflows/railway-nightly-restart.yml
+#
+# Migration Vercel en cours : ce workflow ne couvre plus que les services
+# encore hébergés sur Railway. Retirer chaque ligne au fur et à mesure, puis
+# supprimer le fichier et le secret RAILWAY_API_TOKEN quand la liste est vide.
 #
 # Note fuseau horaire : 22:00 UTC = minuit à Paris en heure d'été (CEST,
 # UTC+2). En heure d'hiver (CET, UTC+1) ça correspond à 23h à Paris.
@@ -36,13 +40,7 @@ jobs:
 
           # name|projectId|serviceId|environmentId
           SERVICES=(
-            "portfolio-2026|00b919e4-b5af-45e0-ab9b-5ad9c8a9f5ad|c5c4c77f-fb4e-4c7f-969f-3de6571a9f62|480f4ec3-3e1d-40c8-9c18-12953b72eff2"
-            "pico8-launcher|5518fa26-526b-4971-99a7-6623c12334a5|6187d85d-e313-41ff-bbb8-3ac26c392700|c76baa13-3779-41fb-ba9c-c6ad141b0026"
-            "transport_screen|22840443-47fb-4715-8d47-c6d162a9396f|d317f38c-6bf6-4921-937a-96c489507d50|991e24b9-55b7-4038-b084-0771dd0a39e4"
-            "trmnl-bring|0c67d764-0707-4e91-9e2b-a4734f590704|41951ae4-0e90-48ab-acd1-57610185619d|5037b06f-f362-4179-8d63-f51c2dbeb298"
             "Smile-Life-Online|8e05afc7-3481-4929-ad60-587afcf4d494|d6d5e3b3-83d0-423a-ac4c-c7a92bdeb6ed|1e3c1133-0c1d-4853-a511-575b3bf4ea11"
-            "imgset|222a5210-16cd-4089-a628-27eb38d3b54d|df2c31a1-a12f-48ea-a5ad-17f3eec8da24|b9db5bb5-058f-4689-8fdb-61b5d34926c8"
-            "oklch-palette-creator|03e949cd-e8e4-4cc8-bbb3-9aded1a30061|19f42064-1c40-48c0-a898-384187580a79|a64bddc6-2c58-4786-a71e-d2bce60a7914"
           )
 
           FAILED=0

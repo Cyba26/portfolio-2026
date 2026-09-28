@@ -7,6 +7,7 @@ import BlocProject from '../components/BlocProject.astro';
 import BlocSkills from '../components/BlocSkills.astro';
 import BlocLink from '../components/BlocLink.astro';
 import Footer from '../components/Footer.astro';
+import HeroMotif from '../components/HeroMotif.astro';
 ---
 
 <Layout>
@@ -17,13 +18,7 @@ import Footer from '../components/Footer.astro';
     <div class="presentation__circle" id="presentation-circle"></div>
 
     <!-- ════ Hero ════ -->
-    <section class="hero">
-      <img
-        class="hero__pattern"
-        src="/images/hero/motif-hero.png"
-        alt=""
-      />
-    </section>
+    <HeroMotif />
 
     <!-- ════ Présentation ════ -->
     <section class="presentation fade-in" id="presentation">
@@ -148,32 +143,6 @@ import Footer from '../components/Footer.astro';
     overflow-x: hidden;
   }
 
-  /* ── Hero ── */
-  .hero {
-    position: relative;
-    width: 100%;
-    height: 686px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 0;
-  }
-
-  .hero__pattern {
-    width: 3200px;
-    max-width: none;
-    height: auto;
-    object-fit: cover;
-    will-change: transform, opacity;
-  }
-
-  @media (max-width: 768px) {
-    .hero__pattern {
-      width: 2240px;
-    }
-  }
-
   /* ── Cercle scroll ── */
   .presentation__circle {
     position: absolute;
@@ -262,8 +231,6 @@ import Footer from '../components/Footer.astro';
   function initScrollEffects() {
     const section = document.getElementById('presentation');
     const circle = document.getElementById('presentation-circle');
-    const heroPattern = document.querySelector('.hero__pattern') as HTMLElement;
-    const hero = document.querySelector('.hero') as HTMLElement;
     if (!section || !circle) return;
 
     // Position circle centered between PhotoTitle and description text
@@ -293,18 +260,6 @@ import Footer from '../components/Footer.astro';
       const progress = Math.max(0, Math.min(1, (viewH - rect.top) / scrollRange));
       const scale = 0.2 + progress * 1.4;
       circle.style.transform = `scale(${scale})`;
-
-      // Hero parallax: moves at 50% scroll speed + fades + dezooms
-      if (heroPattern && hero) {
-        const scrollY = window.scrollY;
-        const heroH = hero.offsetHeight;
-        const parallaxY = scrollY * 0.5;
-        const fadeProgress = Math.min(1, scrollY / heroH);
-        const opacity = 1 - fadeProgress * 0.9;
-        const scale = 1 - fadeProgress * 0.15;
-        heroPattern.style.transform = `translateY(${parallaxY}px) scale(${scale})`;
-        heroPattern.style.opacity = `${opacity}`;
-      }
     }
 
     positionCircle();

@@ -78,8 +78,11 @@ const { clientLight, clientBold, description, chips, imageSrc, backgroundSrc, hr
   .bloc-project__overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 17, 40, 0.95);
-    transition: background-color 0.5s ease;
+    /* opacité (et non background-color) : animée par le compositeur, sans repeindre le bloc */
+    background: rgb(0, 17, 40);
+    opacity: 0.95;
+    transition: opacity 0.5s ease;
+    will-change: opacity;
   }
 
   .bloc-project__content {
@@ -178,6 +181,8 @@ const { clientLight, clientBold, description, chips, imageSrc, backgroundSrc, hr
 
       projects.forEach((project) => {
         const rect = project.getBoundingClientRect();
+        // hors écran (avec marge) : rien ne se voit, on ne touche à rien
+        if (rect.bottom < -viewH * 0.5 || rect.top > viewH * 1.5) return;
         const blockCenter = rect.top + rect.height / 2;
         const distFromCenter = Math.abs(blockCenter - viewCenter);
         const maxDist = viewH * 0.4;
@@ -187,7 +192,7 @@ const { clientLight, clientBold, description, chips, imageSrc, backgroundSrc, hr
         const overlay = project.querySelector('.bloc-project__overlay') as HTMLElement;
         if (overlay) {
           const overlayAlpha = 0.95 - proximity * 0.4;
-          overlay.style.backgroundColor = `rgba(0, 17, 40, ${overlayAlpha})`;
+          overlay.style.opacity = overlayAlpha.toFixed(3);
         }
 
         const scrollOffset = (rect.top - viewCenter) * 0.15;
@@ -207,7 +212,12 @@ const { clientLight, clientBold, description, chips, imageSrc, backgroundSrc, hr
       });
     }
 
-    window.addEventListener('scroll', onScroll, { passive: true });
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => { ticking = false; onScroll(); });
+    }, { passive: true });
     onScroll();
 
     // ── Circle transition on click ──

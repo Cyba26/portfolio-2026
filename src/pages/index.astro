@@ -155,6 +155,7 @@ import HeroMotif from '../components/HeroMotif.astro';
     background: var(--color-blue-850);
     pointer-events: none;
     transform: scale(0.2);
+    will-change: transform;   /* calque dédié : le zoom au scroll ne repeint pas le cercle */
     z-index: 1;
   }
 

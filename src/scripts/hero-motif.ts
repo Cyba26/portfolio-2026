@@ -6,6 +6,9 @@
    trait = 32). L'ordre des éléments = ordre d'empilement.
    Chaque picto se dé-trace vers son point de départ, du nom vers les bords,
    puis le point restant se résorbe. Tracé inverse à l'ouverture.
+   Le nom perd sa graisse (police variable) lettre par lettre puis s'efface.
+   Rendu en <canvas> (et non en SVG) : un SVG de ~700 tracés est re-rastérisé
+   en entier à chaque frame, ce qui faisait chuter les FPS sur mobile.
    ═══════════════════════════════════════════════ */
 
 const D = '#022858', L = '#114580', A = '#FDC787';
@@ -121,152 +124,187 @@ const ICONS = [
   [path('M1338,1435 Q1274,1497 1338,1560', D), path('M1397,1435 Q1461,1497 1397,1560', D)], // ( )
 ];
 
-function makeEl(e) {
-  if (e.dot) {
-    const n = document.createElementNS(NS, 'circle');
-    n.setAttribute('cx', e.dot[0]); n.setAttribute('cy', e.dot[1]); n.setAttribute('r', e.dot[2]);
-    n.setAttribute('fill', e.c);
-    return { node: n, kind: 'dot', r: e.dot[2] };
-  }
-  const n = document.createElementNS(NS, 'path');
-  n.setAttribute('d', e.d);
-  n.setAttribute('pathLength', '1');
-  n.setAttribute('stroke', e.c);
-  n.setAttribute('stroke-width', e.w || SW);
-  n.setAttribute('fill', e.fill ? e.c : 'none');
-  return { node: n, kind: 'stroke', w: e.w || SW, fill: !!e.fill };
-}
-
 const clamp = v => v < 0 ? 0 : v > 1 ? 1 : v;
 const easeInOut = x => x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
 const easeIn = x => x * x;
 const easeInBack = x => 2.70158 * x * x * x - 1.70158 * x * x;
 
-// t = 0 : élément entier — t = 1 : disparu
-function applyPart(p, t) {
+// PRNG déterministe : le léger aléa de l'ordre reste stable d'une visite à l'autre
+function rng(seed) { return () => ((seed = Math.imul(seed ^ (seed >>> 15), 0x2c1b3c6d) + 0x6d2b79f5 | 0) >>> 0) / 4294967296; }
+
+// Prépare chaque élément une seule fois : Path2D + longueur du tracé + bbox du picto
+function prepareIcons() {
+  const m = document.createElementNS(NS, 'svg');
+  m.setAttribute('style', 'position:absolute;visibility:hidden;width:0;height:0');
+  document.body.appendChild(m);
+  const icons = ICONS.map(els => {
+    const g = document.createElementNS(NS, 'g');
+    m.appendChild(g);
+    const parts = els.map(e => {
+      if (e.dot) {
+        const c = document.createElementNS(NS, 'circle');
+        c.setAttribute('cx', e.dot[0]); c.setAttribute('cy', e.dot[1]); c.setAttribute('r', e.dot[2]);
+        g.appendChild(c);
+        return { kind: 'dot', x: e.dot[0], y: e.dot[1], r: e.dot[2], c: e.c };
+      }
+      const n = document.createElementNS(NS, 'path');
+      n.setAttribute('d', e.d);
+      g.appendChild(n);
+      return { kind: 'stroke', p: new Path2D(e.d), len: n.getTotalLength(), w: e.w || SW, fill: !!e.fill, c: e.c };
+    });
+    const b = g.getBBox();
+    return { parts, box: { x: b.x - SW / 2, y: b.y - SW / 2, w: b.width + SW, h: b.height + SW } };
+  });
+  m.remove();
+  return icons;
+}
+
+// Dessine un élément à l'avancement t (0 = entier, 1 = disparu)
+function drawPart(ctx, p, t) {
   if (p.kind === 'dot') {
-    const s = t <= 0 ? 1 : Math.max(0, 1 - easeInBack(t));
-    p.node.setAttribute('r', (p.r * s).toFixed(2));
+    const r = p.r * (t <= 0 ? 1 : Math.max(0, 1 - easeInBack(t)));
+    if (r < 0.3) return;
+    ctx.fillStyle = p.c;
+    ctx.beginPath(); ctx.arc(p.x, p.y, r, 0, Math.PI * 2); ctx.fill();
     return;
   }
   const RET = 0.78;                                   // part du temps consacrée au « dé-tracé »
   const f = 1 - easeInOut(clamp(t / RET));            // longueur de tracé restante
   const w = p.w * (1 - easeIn(clamp((t - RET) / (1 - RET))));
-  if (f >= 1) p.node.removeAttribute('stroke-dasharray');
-  else p.node.setAttribute('stroke-dasharray', `${f.toFixed(4)} 2`);
-  p.node.setAttribute('stroke-width', w.toFixed(2));
-  if (p.fill) p.node.setAttribute('fill-opacity', (1 - clamp(t / 0.3)).toFixed(3));
-  p.node.style.visibility = w < 0.3 ? 'hidden' : '';
+  if (w < 0.3) return;
+  if (p.fill && t < 0.3) {
+    ctx.globalAlpha = 1 - t / 0.3;
+    ctx.fillStyle = p.c; ctx.fill(p.p);
+    ctx.globalAlpha = 1;
+  }
+  ctx.lineWidth = w;
+  ctx.strokeStyle = p.c;
+  ctx.setLineDash(f >= 1 ? [] : [Math.max(f * p.len, 0.01), p.len * 2]);
+  ctx.stroke(p.p);
 }
-
-function applyInstance(it, t) {
-  const n = it.parts.length;
-  const step = n > 1 ? Math.min(0.18, 0.5 / (n - 1)) : 0;   // les éléments d'un picto partent en léger décalé
-  const len = 1 - step * (n - 1);
-  for (let j = 0; j < n; j++) applyPart(it.parts[j], clamp((t - (n - 1 - j) * step) / len));
-}
-
-// PRNG déterministe : le léger aléa de l'ordre reste stable d'une visite à l'autre
-function rng(seed) { return () => ((seed = Math.imul(seed ^ (seed >>> 15), 0x2c1b3c6d) + 0x6d2b79f5 | 0) >>> 0) / 4294967296; }
 
 export function initHeroMotif(hero) {
   if (!hero || hero.dataset.motifReady) return;
   hero.dataset.motifReady = 'true';
-  const svg = hero.querySelector('.hero__motif');
-  const layer = hero.querySelector('.hero__layer');
+  const canvas = hero.querySelector('.hero__motif');
+  const ctx = canvas.getContext('2d');
   const nameEl = hero.querySelector('.hero__name');
+  const icons = prepareIcons();
 
-  // bbox de chaque icône dans la tuile (trait inclus)
-  const measure = document.createElementNS(NS, 'svg');
-  measure.setAttribute('style', 'position:absolute;visibility:hidden;width:0;height:0');
-  document.body.appendChild(measure);
-  const bboxes = ICONS.map(els => {
-    const g = document.createElementNS(NS, 'g');
-    els.forEach(e => g.appendChild(makeEl(e).node));
-    measure.appendChild(g);
-    const b = g.getBBox();
-    return { x: b.x - SW / 2, y: b.y - SW / 2, w: b.width + SW, h: b.height + SW };
+  // Nom découpé en lettres (de la fin vers le début de chaque ligne, comme un tracé qu'on rembobine)
+  const letters = [];
+  [...nameEl.children].forEach(lineEl => {
+    const base = lineEl.tagName === 'B' ? 700 : 300;
+    const chars = [...lineEl.textContent];
+    lineEl.textContent = '';
+    chars.forEach((ch, i) => {
+      const el = document.createElement('span');
+      el.textContent = ch;
+      lineEl.appendChild(el);
+      const pos = chars.length > 1 ? i / (chars.length - 1) : 0;
+      letters.push({ el, base, start: (1 - pos) * 0.45, w: base, o: 1 });
+    });
   });
-  measure.remove();
+  nameEl.setAttribute('aria-label', 'Arthur Jeunechamp');
 
   let instances = [];
-  let heroH = 686, builtWidth = 0, progress = 0, intro = 0;
+  let W = 0, H = 686, dpr = 1, scale = 1, ox = 0, oy = 0;
+  let progress = 0, intro = 0, parallax = 0;
+  let drawnProgress = -1, drawnParallax = -1;
 
   function build() {
-    svg.textContent = '';
-    instances = [];
-    const W = svg.clientWidth, H = svg.clientHeight;
-    heroH = H; builtWidth = W;
-    const scale = (W <= 768 ? 0.311 : 0.444) * 1350 / TILE_W;   // même échelle que l'ancien motif-hero.png
+    W = canvas.clientWidth; H = canvas.clientHeight;
+    dpr = Math.min(window.devicePixelRatio || 1, 2);   // au-delà de 2× le gain visuel ne vaut pas le coût
+    canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+    scale = (W <= 768 ? 0.311 : 0.444) * 1350 / TILE_W;   // même échelle que l'ancien motif-hero.png
     nameEl.style.setProperty('--name-size', (140 * scale) + 'px');
-
-    const ox = W / 2 - NAME_ANCHOR[0] * scale;
-    const oy = H / 2 - NAME_ANCHOR[1] * scale;
-    const root = document.createElementNS(NS, 'g');
-    root.setAttribute('transform', `translate(${ox.toFixed(2)} ${oy.toFixed(2)}) scale(${scale})`);
-    svg.appendChild(root);
+    ox = W / 2 - NAME_ANCHOR[0] * scale;
+    oy = H / 2 - NAME_ANCHOR[1] * scale;
 
     // zones du nom (une par ligne) en coordonnées tuile : aucun picto dessous
-    const sr = svg.getBoundingClientRect(), PAD = 2;
+    const cr = canvas.getBoundingClientRect(), PAD = 2;
+    const ty0 = parseFloat(nameEl.style.translate?.split(' ')[1]) || 0;
     const nameBoxes = [...nameEl.children].map(el => {
       const r = el.getBoundingClientRect();
-      return [(r.left - sr.left - PAD - ox) / scale, (r.top - sr.top - PAD - oy) / scale,
-              (r.right - sr.left + PAD - ox) / scale, (r.bottom - sr.top + PAD - oy) / scale];
+      return [(r.left - cr.left - PAD - ox) / scale, (r.top - ty0 - cr.top - PAD - oy) / scale,
+              (r.right - cr.left + PAD - ox) / scale, (r.bottom - ty0 - cr.top + PAD - oy) / scale];
     });
 
-    // zone visible en coordonnées tuile (+ marge au-dessus pour le parallax)
+    // zone couverte en coordonnées tuile (+ marge au-dessus pour le parallax)
     const vx0 = -ox / scale - 40, vx1 = (W - ox) / scale + 40;
     const vy0 = (-oy - H * 0.6) / scale - 40, vy1 = (H - oy) / scale + 40;
     const rand = rng(26);
     const maxDist = Math.hypot(W / 2, H / 2) / scale;
+    instances = [];
 
     for (let r = Math.floor(vy0 / TILE_H) - 1; r <= Math.ceil(vy1 / TILE_H); r++) {
       const shift = ((r * ROW_SHIFT) % TILE_W + TILE_W) % TILE_W;
       for (let c = Math.floor((vx0 - shift) / TILE_W) - 1; c <= Math.ceil((vx1 - shift) / TILE_W); c++) {
         const tx = c * TILE_W + shift, ty = r * TILE_H;
-        ICONS.forEach((els, i) => {
-          const b = bboxes[i];
+        icons.forEach(icon => {
+          const b = icon.box;
           const bx = b.x + tx, by = b.y + ty;
           if (bx + b.w < vx0 || bx > vx1 || by + b.h < vy0 || by > vy1) return;
           if (nameBoxes.some(n => bx < n[2] && bx + b.w > n[0] && by < n[3] && by + b.h > n[1])) return;
-          const g = document.createElementNS(NS, 'g');
-          if (tx || ty) g.setAttribute('transform', `translate(${tx} ${ty})`);
-          const parts = els.map(makeEl);
-          parts.forEach(p => g.appendChild(p.node));
-          root.appendChild(g);
-          const cx = bx + b.w / 2, cy = by + b.h / 2;
           // ordre : du nom vers les bords, avec un peu d'aléa
-          const dist = Math.min(1, Math.hypot(cx - NAME_ANCHOR[0], cy - NAME_ANCHOR[1]) / maxDist);
-          instances.push({ parts, start: (0.8 * dist + 0.2 * rand()) * (1 - DUR), lastT: -1 });
+          const dist = Math.min(1, Math.hypot(bx + b.w / 2 - NAME_ANCHOR[0], by + b.h / 2 - NAME_ANCHOR[1]) / maxDist);
+          instances.push({
+            parts: icon.parts, tx, ty,
+            start: (0.8 * dist + 0.2 * rand()) * (1 - DUR),
+            top: oy + by * scale, bottom: oy + (by + b.h) * scale,   // bornes écran (px CSS) pour ne dessiner que le visible
+          });
         });
       }
     }
-    for (const it of instances) { applyInstance(it, 0); it.lastT = 0; }
+    drawnProgress = -1;
   }
 
-  function render() {
+  function draw() {
+    if (progress === drawnProgress && parallax === drawnParallax) return;
+    const wasEmpty = drawnProgress >= 1;
+    drawnProgress = progress; drawnParallax = parallax;
+    if (progress >= 1 && wasEmpty) return;            // déjà vide : plus rien à faire
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (progress >= 1) return;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    const k = scale * dpr;
     for (const it of instances) {
       const t = clamp((progress - it.start) / DUR);
-      if (t === it.lastT) continue;
-      applyInstance(it, t);
-      it.lastT = t;
+      if (t >= 1 || it.bottom + parallax < 0 || it.top + parallax > H) continue;
+      ctx.setTransform(k, 0, 0, k, (ox + it.tx * scale) * dpr, (oy + parallax + it.ty * scale) * dpr);
+      const n = it.parts.length;
+      const step = n > 1 ? Math.min(0.18, 0.5 / (n - 1)) : 0;   // les éléments d'un picto partent en léger décalé
+      const len = 1 - step * (n - 1);
+      for (let j = 0; j < n; j++) drawPart(ctx, it.parts[j], clamp((t - (n - 1 - j) * step) / len));
+    }
+  }
+
+  function renderName(np) {
+    for (const l of letters) {
+      const t = clamp((np - l.start) / 0.55);
+      const w = Math.round(l.base + (100 - l.base) * easeInOut(clamp(t / 0.7)));
+      const o = Math.round((1 - easeIn(clamp((t - 0.7) / 0.3))) * 100) / 100;
+      if (w !== l.w) { l.el.style.fontWeight = w; l.w = w; }       // n'écrit que ce qui change
+      if (o !== l.o) { l.el.style.opacity = o; l.o = o; }
     }
   }
 
   function update() {
     const y = window.scrollY;
-    const sp = clamp(y / (heroH * 0.75));
+    const sp = clamp(y / (H * 0.75));
     progress = Math.max(sp, intro);
-    layer.style.transform = `translateY(${(y * 0.5).toFixed(1)}px)`;   // parallax
-    nameEl.style.opacity = (1 - clamp((sp - 0.55) / 0.4)).toFixed(3);
-    render();
+    parallax = Math.round(Math.min(y, H) * 0.5);
+    nameEl.style.translate = `0 ${parallax}px`;
+    renderName(clamp((sp - 0.35) / 0.6));
+    draw();
   }
 
   // ouverture : le motif se trace (même animation, jouée à l'envers)
   function playIntro() {
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) { intro = 0; update(); return; }
     const t0 = performance.now();
-    intro = 1;
     const tick = now => {
       intro = 1 - clamp((now - t0) / INTRO_MS);
       update();
@@ -286,10 +324,10 @@ export function initHeroMotif(hero) {
   let resizeTimer;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => { if (svg.clientWidth !== builtWidth) { build(); update(); } }, 150);
+    resizeTimer = setTimeout(() => { if (canvas.clientWidth !== W) { build(); update(); } }, 150);
   });
 
-  if (window.scrollY < 10) intro = 1;          // cache le motif avant le premier tracé
+  if (window.scrollY < 10) intro = 1;          // motif caché avant le premier tracé
   build();
   update();
   // la zone du nom dépend de la police : on attend SUSE avant de lancer l'ouverture

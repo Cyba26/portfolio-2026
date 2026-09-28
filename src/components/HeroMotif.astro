@@ -1,13 +1,11 @@
 ---
-// Hero de la homepage : motif UI/UX en SVG généré (voir src/scripts/hero-motif.ts)
-// qui se trace à l'ouverture et se défait picto par picto au scroll.
+// Hero de la homepage : motif UI/UX dessiné en canvas (voir src/scripts/hero-motif.ts)
+// qui se trace à l'ouverture et se défait picto par picto au scroll ; le nom perd sa graisse puis s'efface.
 ---
 
 <section class="hero" id="hero">
-  <div class="hero__layer">
-    <svg class="hero__motif" aria-hidden="true"></svg>
-    <h1 class="hero__name"><b>Arthur</b><span>Jeunechamp</span></h1>
-  </div>
+  <canvas class="hero__motif" aria-hidden="true"></canvas>
+  <h1 class="hero__name"><b>Arthur</b><span>Jeunechamp</span></h1>
 </section>
 
 <style>
@@ -19,24 +17,12 @@
     z-index: 0;
   }
 
-  .hero__layer {
-    position: absolute;
-    inset: 0;
-    will-change: transform;
-  }
-
   .hero__motif {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     display: block;
-  }
-
-  .hero__motif :global(path),
-  .hero__motif :global(circle) {
-    stroke-linecap: round;
-    stroke-linejoin: round;
   }
 
   .hero__name {
@@ -51,6 +37,8 @@
     color: var(--color-cream);
     text-shadow: var(--glow-title);
     white-space: nowrap;
+    will-change: translate;
+    contain: layout style;
   }
 
   .hero__name b {

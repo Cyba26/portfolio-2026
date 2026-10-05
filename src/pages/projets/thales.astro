@@ -4,7 +4,7 @@ import ProjectThumbnail from '../../components/ProjectThumbnail.astro';
 ---
 
 <ProjectLayout
-  title={"Thales Parking\u00A0: Réinventer le\u00A0parcours utilisateur dans son\u00A0expérience du\u00A0parking"}
+  title={"Thales Parking\u00A0: Numériser le\u00A0parcours utilisateur dans son\u00A0expérience du\u00A0parking"}
   bgColor="#00111d"
   textColor="#f1f5ff"
   chips={["UI Design", "UX Design", "Design System", "Écologie", "Parking & Transport"]}
@@ -14,58 +14,42 @@ import ProjectThumbnail from '../../components/ProjectThumbnail.astro';
   <img slot="header" class="parallax-layer" src="/images/projects/Thales/Mockup Thales Ecotick 2.png" alt="" />
   <img slot="header" class="parallax-layer" src="/images/projects/Thales/Mockup Thales Ecotick 3.png" alt="" />
 
-  <p class="project-text">La&nbsp;section Parking chez Thales réinvente astucieusement ses&nbsp;infrastructures et&nbsp;son approche sur le&nbsp;parking de&nbsp;demain. L'idée à&nbsp;travers la&nbsp;première solution à&nbsp;émerger&nbsp;: Ecotick, est de&nbsp;se&nbsp;défaire des&nbsp;tickets papiers pour tenter une approche numérique et&nbsp;plus userfriendly, tout en&nbsp;limitant l'impact&nbsp;environnemental.</p>
-
+  <p class="project-text">Ecotick remplace le&nbsp;ticket papier de&nbsp;Thales Parking par&nbsp;une&nbsp;application mobile. Détection de&nbsp;proximité à&nbsp;l'entrée, paiement direct depuis le&nbsp;téléphone, plus de&nbsp;passage en&nbsp;caisse.</p>
+  <p class="project-text">J'ai conçu l'intégralité du&nbsp;parcours (arborescence, wireframes, maquettes, Design System) et&nbsp;assuré la&nbsp;review dev&nbsp;sur&nbsp;l'implémentation.</p>
+  <h3 class="project-section">Le contexte</h3>
+  <p class="project-text">Le&nbsp;constat initial était que&nbsp;le&nbsp;ticket papier bloque le&nbsp;parcours dès&nbsp;qu'il est&nbsp;perdu, oblige à&nbsp;faire la&nbsp;queue en&nbsp;caisse, et&nbsp;coûte cher à&nbsp;l'exploitant en&nbsp;consommables et&nbsp;maintenance.</p>
   <div class="project-image">
-    <img src="/images/projects/Thales/1_Thales-Pains.png" alt="Thales Pains" loading="lazy" />
+    <img src="/images/projects/Thales/1_Thales-Pains.png" alt="Ecotick, le contexte" loading="lazy" />
   </div>
-
   <div class="project-image">
-    <img src="/images/projects/Thales/2_Thales-User_journey_simplifie.png" alt="User journey simplifié" loading="lazy" />
+    <img src="/images/projects/Thales/2_Thales-User_journey_simplifie.png" alt="Le parcours avec un ticket papier" loading="lazy" />
   </div>
-
-  <p class="project-text">C'est en&nbsp;partant de&nbsp;ce&nbsp;contexte qu'est née cette application mobile et&nbsp;tablette. En&nbsp;s'inspirant des&nbsp;éléments composant les&nbsp;bornes (boutons physiques, finitions de&nbsp;haute manufacture, etc.), l'interface du&nbsp;produit numérique est à&nbsp;la&nbsp;fois limpide grâce à&nbsp;sa&nbsp;concordance aux&nbsp;objets physiques présent dans le&nbsp;parking, mais également efficace de&nbsp;part sa&nbsp;simplicité visuelle&nbsp;accrue.</p>
-
+  <h3 class="project-section">La solution</h3>
+  <p class="project-text">Plutôt que&nbsp;de&nbsp;changer la&nbsp;façon d'utiliser le&nbsp;ticket, le&nbsp;parti pris a&nbsp;été&nbsp;de&nbsp;le&nbsp;supprimer entièrement. Le&nbsp;téléphone devient le&nbsp;seul point de&nbsp;contact du&nbsp;parcours, de&nbsp;l'entrée à&nbsp;la&nbsp;sortie, en&nbsp;passant par&nbsp;le&nbsp;paiement.</p>
+  <div class="project-image">
+    <img src="/images/projects/Thales/6_Thales-Gains.png" alt="Bénéfices engendrés" loading="lazy" />
+  </div>
+  <h3 class="project-section">La méthodologie</h3>
+  <p class="project-text">Le&nbsp;projet est&nbsp;parti d'un audit terrain du&nbsp;parcours physique existant&nbsp;: bornes, caisses, points de&nbsp;friction côté usager et&nbsp;côté exploitant.</p>
+  <p class="project-text">J'ai conçu l'arborescence puis l'ensemble des&nbsp;wireframes lo-fi sur&nbsp;le&nbsp;parcours complet&nbsp;: entrée en&nbsp;borne, suivi de&nbsp;stationnement, paiement, historique, gestion des&nbsp;justificatifs. Le&nbsp;passage en&nbsp;maquettes hi-fi a&nbsp;été&nbsp;l'occasion de&nbsp;poser une&nbsp;identité visuelle forte, en&nbsp;cohérence avec l'univers Thales mais avec sa&nbsp;propre personnalité. Une&nbsp;attention particulière a&nbsp;été&nbsp;portée à&nbsp;la&nbsp;lisibilité en&nbsp;mobilité et&nbsp;à&nbsp;la&nbsp;rapidité d'accès aux&nbsp;fonctions clés. Un&nbsp;Design System a&nbsp;été&nbsp;mis&nbsp;en&nbsp;place pour cette application et&nbsp;conçu pour servir de&nbsp;base aux&nbsp;futures solutions Thales Parking.</p>
+  <p class="project-text">Une&nbsp;session de&nbsp;test a&nbsp;été&nbsp;menée sur&nbsp;le&nbsp;terrain, directement aux&nbsp;bornes physiques. Deux points de&nbsp;friction ont&nbsp;été&nbsp;identifiés&nbsp;: un&nbsp;problème de&nbsp;luminosité de&nbsp;l'écran (déjà identifié en&nbsp;interne) et&nbsp;un&nbsp;manque de&nbsp;clarté sur&nbsp;la&nbsp;gestion des&nbsp;cas&nbsp;problématiques (ticket non&nbsp;détecté, erreur de&nbsp;borne). Ces&nbsp;retours ont&nbsp;permis d'ajuster les&nbsp;écrans concernés avant la&nbsp;livraison.</p>
+  <p class="project-text">J'ai assuré la&nbsp;review dev&nbsp;sur&nbsp;l'ensemble de&nbsp;l'implémentation pour garantir la&nbsp;cohérence avec les&nbsp;maquettes. L'application a&nbsp;également été&nbsp;présentée en&nbsp;salon avec un&nbsp;prototype Figma dédié.</p>
+  <h3 class="project-section">Le produit</h3>
+  <p class="project-text">Le&nbsp;Design System construit pour Ecotick couvre les&nbsp;composants clés de&nbsp;l'application (boutons, dégradés, historique, états de&nbsp;ticket) pour garantir une&nbsp;cohérence visuelle sur&nbsp;l'ensemble du&nbsp;parcours, et&nbsp;servir de&nbsp;socle aux&nbsp;prochaines applications Thales Parking.</p>
   <div class="project-image">
     <img src="/images/projects/Thales/3_Keyvisual_Ecotick.png" alt="Key visual Ecotick" loading="lazy" />
   </div>
-
   <div class="project-image">
     <video src="/images/projects/Thales/Showreel_Client_ThalesEcotick-8s_1.mp4" autoplay muted loop playsinline></video>
   </div>
-
   <div class="project-image">
     <img src="/images/projects/Thales/5_Fonctionnement.png" alt="Fonctionnement" loading="lazy" />
   </div>
-
   <div class="project-image">
-    <img src="/images/projects/Thales/6_Thales-Gains.png" alt="Thales Gains" loading="lazy" />
+    <img src="/images/projects/Thales/9_Presentation_split_screens_Carre.png" alt="Présentation Ecotick" loading="lazy" />
   </div>
-
-  <p class="project-text">Afin de&nbsp;centraliser l'ensemble de&nbsp;l'infrastructure, aussi bien pour le&nbsp;propriétaire du&nbsp;parking que pour les&nbsp;équipes d'installation et&nbsp;de&nbsp;maintenance de&nbsp;Thales, un&nbsp;outil unifié a&nbsp;été conçu et&nbsp;développé. L'objectif principal était de&nbsp;simplifier les&nbsp;processus internes en&nbsp;créant une interface globale capable de&nbsp;répondre aux&nbsp;besoins de&nbsp;chaque profil&nbsp;utilisateur.</p>
-
-  <p class="project-text">Ce&nbsp;projet visait à&nbsp;rationaliser les&nbsp;parcours, améliorer la&nbsp;lisibilité des&nbsp;informations, fluidifier la&nbsp;navigation entre les&nbsp;différentes fonctionnalités et&nbsp;renforcer la&nbsp;cohérence visuelle de&nbsp;l'outil.</p>
-
-  <p class="project-text">En&nbsp;organisant des&nbsp;ateliers d'idéation avec les&nbsp;parties prenantes, nous avons identifié les&nbsp;besoins des&nbsp;différents responsables. Ces&nbsp;échanges nous ont permis de&nbsp;construire une arborescence simple et&nbsp;cohérente, puis de&nbsp;développer des&nbsp;wireframes et&nbsp;des&nbsp;maquettes répondant aux&nbsp;attentes métiers tout en&nbsp;assurant une expérience fluide et&nbsp;intuitive.</p>
-
   <div class="project-image">
-    <img src="/images/projects/Thales/7_Wireframe.png" alt="Wireframe" loading="lazy" />
-  </div>
-
-  <div class="project-image">
-    <img src="/images/projects/Thales/8_Maquette.png" alt="Maquette" loading="lazy" />
-  </div>
-
-  <p class="project-text">Par&nbsp;la&nbsp;suite, des&nbsp;supports supplémentaires ont commencé à&nbsp;voir le&nbsp;jour&nbsp;: d'autres applications, des&nbsp;écrans de&nbsp;bornes, des&nbsp;présentations internes,&nbsp;etc.</p>
-
-  <div class="project-image">
-    <img src="/images/projects/Thales/9_Presentation_split_screens_Carre.png" alt="Présentation split screens" loading="lazy" />
-  </div>
-
-  <p class="project-text">L'idée de&nbsp;cette nouvelle interface est de&nbsp;lancer un&nbsp;univers graphique pour les&nbsp;futurs produits Thales Parking en&nbsp;interne ou&nbsp;en&nbsp;externe. Cette application sert de&nbsp;tremplin à&nbsp;cette nouvelle déclinaison graphique et&nbsp;ergonomique.</p>
-
-  <div class="project-image">
-    <img src="/images/projects/Thales/10_Echantillon Design System Thales1.png" alt="Échantillon Design System Thales" loading="lazy" />
+    <img src="/images/projects/Thales/10_Echantillon Design System Thales1.png" alt="Échantillon du Design System Ecotick" loading="lazy" />
   </div>
 
   <Fragment slot="thumbnails">

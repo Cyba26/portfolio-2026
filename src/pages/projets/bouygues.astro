@@ -4,7 +4,7 @@ import ProjectThumbnail from '../../components/ProjectThumbnail.astro';
 ---
 
 <ProjectLayout
-  title={"Bouygues Quickconnect\u00A0: Réinventer la\u00A0gestion de\u00A0l'information sur les\u00A0chantiers"}
+  title={"Bouygues Quickconnect\u00A0: Optimiser la\u00A0gestion de\u00A0chantier grâce à\u00A0une solution multi-canal"}
   bgColor="#faf5eb"
   textColor="#464b47"
   chips={["UI Design", "UX Design", "Design System", "BTP & Construction"]}
@@ -14,50 +14,43 @@ import ProjectThumbnail from '../../components/ProjectThumbnail.astro';
   <img slot="header" class="parallax-layer" src="/images/projects/Bouygues/Mockup QuickConnect 2.png" alt="" />
   <img slot="header" class="parallax-layer" src="/images/projects/Bouygues/Mockup QuickConnect 3.png" alt="" />
 
-  <p class="project-text">Présent dans plus de&nbsp;80&nbsp;pays, Bouygues est un&nbsp;acteur majeur du&nbsp;BTP, moteur de&nbsp;nombreux projets d'innovation. Parmi eux, Quickconnect, un&nbsp;outil numérique conçu pour transformer la&nbsp;gestion de&nbsp;l'information sur les&nbsp;chantiers. Son&nbsp;objectif&nbsp;: faciliter la&nbsp;transmission d'informations entre les&nbsp;équipes terrain et&nbsp;les&nbsp;équipes siège, à&nbsp;travers un&nbsp;système de&nbsp;formulaires&nbsp;intelligents.</p>
-
+  <p class="project-text">QuickConnect est&nbsp;un&nbsp;outil interne Bouygues pour fluidifier la&nbsp;transmission d'informations entre les&nbsp;équipes siège et&nbsp;les&nbsp;équipes terrain sur&nbsp;les&nbsp;chantiers.</p>
+  <p class="project-text">J'ai repris l'outil de&nbsp;zéro côté UX&nbsp;et&nbsp;UI&nbsp;: arborescence, wireframes, maquettes hi-fi et&nbsp;Design System.</p>
+  <h3 class="project-section">Le contexte</h3>
+  <p class="project-text">QuickConnect existait déjà, mais avait été&nbsp;développé sans démarche UX. Le&nbsp;problème majeur c'est que&nbsp;deux usages opposés cohabitaient sans qu'aucun ne&nbsp;soit vraiment pris en&nbsp;compte. Le&nbsp;siège manquait de&nbsp;visibilité terrain, et&nbsp;le&nbsp;terrain héritait d'un outil lent et&nbsp;difficile à&nbsp;utiliser.</p>
   <div class="project-image">
-    <img src="/images/projects/Bouygues/1_Quickconnect-Pains.png" alt="Quickconnect Pains" loading="lazy" />
+    <img src="/images/projects/Bouygues/1_Quickconnect-Pains.png" alt="Quickconnect, le contexte" loading="lazy" />
   </div>
-
   <div class="project-image">
-    <img src="/images/projects/Bouygues/2_Quickconnect-Formulaires.png" alt="Quickconnect Formulaires" loading="lazy" />
+    <img src="/images/projects/Bouygues/2_Quickconnect-Formulaires.png" alt="Le challenge : les formulaires" loading="lazy" />
   </div>
-
-  <p class="project-text">Pensée comme une solution multi-supports, l'application se&nbsp;décline en&nbsp;deux versions distinctes&nbsp;: une application desktop pour la&nbsp;gestion administrative et&nbsp;une application mobile adaptée aux&nbsp;contraintes du&nbsp;terrain.</p>
-
-  <p class="project-text">Du côté du&nbsp;siège, l'outil permet de&nbsp;créer et&nbsp;gérer facilement des&nbsp;formulaires pour suivre l'avancement des&nbsp;chantiers. L'accent a&nbsp;été mis sur une&nbsp;interface intuitive et&nbsp;une base de&nbsp;données bien structurée pour faciliter la&nbsp;maintenance et&nbsp;l'analyse des&nbsp;retours terrain. Sur&nbsp;mobile, la&nbsp;priorité est à&nbsp;l'accessibilité&nbsp;: l'interface a&nbsp;été pensée pour un&nbsp;usage en&nbsp;conditions réelles, avec navigation simplifiée, temps de&nbsp;saisie réduit et&nbsp;bonne lisibilité, même sur&nbsp;le&nbsp;terrain.</p>
-
-  <p class="project-text">Le&nbsp;projet a&nbsp;débuté par un&nbsp;travail d'arborescence approfondi afin de&nbsp;cadrer les&nbsp;besoins spécifiques des&nbsp;différents profils utilisateurs. Cette phase a&nbsp;été suivie par la&nbsp;création d'un plan complet de&nbsp;wireframes, servant de&nbsp;base à&nbsp;la&nbsp;conception&nbsp;d'écrans.</p>
-
+  <h3 class="project-section">La solution</h3>
+  <p class="project-text">Plutôt que&nbsp;de&nbsp;chercher un&nbsp;compromis entre les&nbsp;deux usages, le&nbsp;parti pris a&nbsp;été&nbsp;de&nbsp;les&nbsp;séparer entièrement&nbsp;: deux parcours distincts au&nbsp;sein d'un même outil, chacun pensé pour son&nbsp;contexte d'usage (desktop côté siège, mobile en&nbsp;conditions de&nbsp;chantier côté terrain).</p>
+  <div class="project-image">
+    <img src="/images/projects/Bouygues/8_Quickconnect-Gains.png" alt="Bénéfices engendrés" loading="lazy" />
+  </div>
+  <h3 class="project-section">La méthodologie</h3>
+  <p class="project-text">Sur&nbsp;ce&nbsp;projet, j'ai repris l'expérience d'un outil fonctionnel mais inexploitable en&nbsp;conditions réelles, car&nbsp;conçu à&nbsp;l'origine par&nbsp;les&nbsp;développeurs pour eux-mêmes plutôt que&nbsp;pour les&nbsp;utilisateurs.</p>
+  <p class="project-text">J'ai d'abord analysé deux contextes d'usage très différents&nbsp;: la&nbsp;création de&nbsp;formulaires au&nbsp;siège sur&nbsp;desktop, et&nbsp;leur saisie sur&nbsp;le&nbsp;terrain par&nbsp;des&nbsp;agents mobiles, parfois avec des&nbsp;gants. Cette phase a&nbsp;aussi servi à&nbsp;sensibiliser l'équipe technique à&nbsp;l'importance du&nbsp;design avant le&nbsp;code.</p>
+  <p class="project-text">J'ai repris l'outil de&nbsp;zéro côté UX. La&nbsp;première étape a&nbsp;été&nbsp;de&nbsp;poser une&nbsp;nouvelle arborescence claire, en&nbsp;identifiant les&nbsp;grandes zones fonctionnelles et&nbsp;en&nbsp;distinguant les&nbsp;parcours siège et&nbsp;terrain. J'ai créé les&nbsp;pages manquantes, restructuré la&nbsp;navigation, et&nbsp;produit l'ensemble des&nbsp;wireframes lo-fi&nbsp;: gestion de&nbsp;la&nbsp;base de&nbsp;données, création de&nbsp;formulaires, vues mobile en&nbsp;conditions réelles. Le&nbsp;passage en&nbsp;maquettes hi-fi a&nbsp;apporté une&nbsp;identité visuelle cohérente entre les&nbsp;deux versions, avec une&nbsp;attention particulière sur&nbsp;la&nbsp;lisibilité et&nbsp;la&nbsp;rapidité de&nbsp;saisie côté terrain.</p>
   <div class="project-image">
     <img src="/images/projects/Bouygues/3_Arbo.png" alt="Arborescence" loading="lazy" />
   </div>
-
-  <p class="project-text">Le&nbsp;projet a&nbsp;débuté par un&nbsp;travail d'arborescence approfondi afin de&nbsp;cadrer les&nbsp;besoins spécifiques des&nbsp;différents profils utilisateurs. Cette phase a&nbsp;été suivie par la&nbsp;création d'un plan complet de&nbsp;wireframes, servant de&nbsp;base à&nbsp;la&nbsp;conception&nbsp;d'écrans.</p>
-
   <div class="project-image">
-    <img src="/images/projects/Bouygues/4_Wireframe to maquette.png" alt="Wireframe to maquette" loading="lazy" />
+    <img src="/images/projects/Bouygues/4_Wireframe to maquette.png" alt="Des wireframes aux maquettes" loading="lazy" />
   </div>
-
-  <p class="project-text">Une fois la&nbsp;structure validée, les&nbsp;écrans ont été créés avec une&nbsp;attention particulière. L'interface a&nbsp;été pensée pour refléter les&nbsp;réalités du&nbsp;terrain tout en&nbsp;conservant une&nbsp;identité visuelle&nbsp;unique.</p>
-
-  <p class="project-text">Par&nbsp;ailleurs, un&nbsp;design system a&nbsp;été développé pour assurer la&nbsp;cohérence graphique, mais aussi pour faciliter la&nbsp;maintenance de&nbsp;l'outil dans&nbsp;le&nbsp;temps.</p>
-
+  <p class="project-text">Avant la&nbsp;mise en&nbsp;production, le&nbsp;client a&nbsp;fait circuler les&nbsp;maquettes auprès de&nbsp;différents services concernés (équipes siège, responsables terrain, équipes de&nbsp;développement) pour collecter leurs retours. Ces&nbsp;allers-retours ont&nbsp;permis d'ajuster certains points sur&nbsp;l'organisation des&nbsp;formulaires et&nbsp;la&nbsp;hiérarchie de&nbsp;l'information avant le&nbsp;passage en&nbsp;développement, sans repasser par&nbsp;une&nbsp;phase de&nbsp;tests utilisateurs en&nbsp;conditions réelles.</p>
+  <p class="project-text">La&nbsp;phase finale a&nbsp;été&nbsp;de&nbsp;mettre en&nbsp;place un&nbsp;Design System complet, pensé autant pour garantir la&nbsp;cohérence visuelle dans le&nbsp;temps que&nbsp;pour faciliter la&nbsp;maintenance côté développement. La&nbsp;documentation des&nbsp;composants a&nbsp;été&nbsp;un&nbsp;livrable clé&nbsp;pour soutenir l'autonomie de&nbsp;l'équipe dev&nbsp;et&nbsp;capitaliser sur&nbsp;le&nbsp;travail de&nbsp;sensibilisation mené en&nbsp;Discovery.</p>
+  <h3 class="project-section">Le produit</h3>
+  <p class="project-text">QuickConnect se&nbsp;décline en&nbsp;deux interfaces distinctes&nbsp;: une&nbsp;plateforme web&nbsp;pour la&nbsp;gestion managériale côté siège, et&nbsp;une&nbsp;interface mobile pensée pour la&nbsp;saisie rapide en&nbsp;conditions de&nbsp;chantier.</p>
   <div class="project-image">
-    <img src="/images/projects/Bouygues/5_Maquette.png" alt="Maquette" loading="lazy" />
+    <img src="/images/projects/Bouygues/5_Maquette.png" alt="Plateforme web pour la gestion managériale" loading="lazy" />
   </div>
-
   <div class="project-image">
-    <img src="/images/projects/Bouygues/6_Web to mobile.png" alt="Web to mobile" loading="lazy" />
+    <img src="/images/projects/Bouygues/6_Web to mobile.png" alt="Application mobile pour le terrain" loading="lazy" />
   </div>
-
   <div class="project-image">
     <video src="/images/projects/Bouygues/7_Showreel_Client_Quickconnect-8s.mp4" autoplay muted loop playsinline></video>
-  </div>
-
-  <div class="project-image">
-    <img src="/images/projects/Bouygues/8_Quickconnect-Gains.png" alt="Quickconnect Gains" loading="lazy" />
   </div>
 
   <Fragment slot="thumbnails">

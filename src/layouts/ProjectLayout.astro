@@ -133,6 +133,21 @@ const {
 </style>
 
 <style is:global>
+  /* Intertitres calqués sur la trame du book : Le contexte / La solution / La méthodologie / Le produit */
+  .project-section {
+    margin-top: var(--space-16);
+    font-size: var(--font-size-h3);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--letter-spacing-h3);
+    line-height: normal;
+  }
+
+  /* Paragraphes qui se suivent (ou sous un intertitre) : resserrés, le gap du conteneur reste pour les images */
+  .project-text + .project-text,
+  .project-section + .project-text {
+    margin-top: calc(var(--space-12) - var(--space-32));
+  }
+
   .project-text {
     font-size: 16px;
     font-weight: var(--font-weight-regular);
@@ -298,7 +313,7 @@ const {
 
   function initScrollFadeIn() {
     // Add fade-in class to all content elements
-    const elements = document.querySelectorAll('.project-image, .project-text, .project-title, .project-chips, .project-others');
+    const elements = document.querySelectorAll('.project-image, .project-text, .project-section, .project-title, .project-chips, .project-others');
     elements.forEach((el) => el.classList.add('fade-in'));
 
     const fadeEls = document.querySelectorAll('.fade-in');
